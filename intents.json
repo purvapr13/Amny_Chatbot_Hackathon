@@ -1,12 +1,12 @@
 {
   "greet": ["hello", "hi", "hey", "hola", "namaste", "dear", "good morning", "good night",
     "bye", "nice to meet you", "how are you?", "there?", "I want to talk", "quick query",
-    "pls talk to me", "what's up?"
+    "pls talk to me", "what's up?", "hiya", "hey there", "hey you"
   ],
   "job_listing": ["please show me some jobs", "I want to work", "I am fedup, I need job", "I am bored",
   "whom to talk for job", "how to get job", "how to switch", "how to find job", "need job urgently",
   "need wfh job", "any remote job", "any wfh jobs for me?", "will i get any job"],
   "others": ["how's weather today", "bla bla", "order pizza", "give me food", "buy me diamond ring", "I want cakes",
-  "give me lots of dresses"]
-
+  "give me lots of dresses", "i want to look pretty", "how to do makeup", "what to wear today", "I want power","lets go",
+  "take me to trip", "where is paris"]
 }
