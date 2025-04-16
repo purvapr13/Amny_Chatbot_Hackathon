@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from intent_classification import predict_intent
 
+
 app = Flask(__name__)
 
 
@@ -21,12 +22,20 @@ def get_response():
 
     intent, confidence = predict_intent(message)
 
-    if intent == "unknown_intent":
-        response = "Hmm... I'm not quite sure what you mean. Can you say it differently?"
+    if confidence < 0.6:  # Optional fallback
+        response = "Hmm... I'm not sure what you mean. Could you say that differently?"
+        intent = "unknown_intent"
+    if intent == 'greet':
+        response = ("Hello, I am Amny, please tell me what are you looking for today?"
+                    "\nYou can find some job listings, mentorship for career change etc.")
     else:
         response = f"I understood that as **{intent.replace('_', ' ').title()}**."
 
-    return jsonify({"intent": intent, "confidence": confidence, "response": response})
+    return jsonify({
+        "intent": intent,
+        "confidence": round(confidence, 2),
+        "response": response
+    })
 
 @app.route('/submit_feedback', methods=['POST'])
 def submit_feedback():
