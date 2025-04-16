@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Amny</title>
-  <!-- Font Awesome for the robot icon -->
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
   <style>
     :root {
       --soft-lavender: #9C67B0;
@@ -150,7 +149,6 @@
       background-color: #7a4ea0;
     }
 
-    /* Scrollbar Styling */
     #chatbox-content::-webkit-scrollbar {
       width: 6px;
     }
@@ -160,11 +158,27 @@
       border-radius: 5px;
     }
 
-    @media screen and (max-width: 420px) {
-      #chatbox {
-        width: 90%;
-        right: 5%;
-      }
+    .feedback-container {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .feedback-text {
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: #444;
+    }
+
+    .feedback-buttons i {
+      font-size: 18px;
+      margin: 0 10px;
+      cursor: pointer;
+      color: #999;
+      transition: color 0.3s ease;
+    }
+
+    .feedback-buttons i:hover {
+      color: var(--soft-lavender);
     }
   </style>
 </head>
@@ -186,7 +200,6 @@
 </div>
 
 <script>
-  // Toggle chatbox visibility
   function toggleChatbox(event) {
     const chatbox = document.getElementById('chatbox');
     const isVisible = chatbox.style.display === 'flex';
@@ -194,7 +207,6 @@
     event.stopPropagation();
   }
 
-  // Close chatbox when clicking outside
   document.addEventListener('click', function (event) {
     const chatbox = document.getElementById('chatbox');
     const chatButton = document.getElementById('chatbot-btn');
@@ -203,7 +215,6 @@
     }
   });
 
-  // Allow sending message on Enter key
   document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('user-input');
     input.addEventListener('keypress', function (e) {
@@ -218,25 +229,16 @@
     const input = document.getElementById('user-input');
     const chatContent = document.getElementById('chatbox-content');
     const userText = input.value.trim();
-
     if (!userText) return;
 
     const userBlock = document.createElement('div');
     userBlock.className = 'message-container user-container';
-
-    const userLabel = document.createElement('div');
-    userLabel.className = 'label';
-    userLabel.textContent = 'You';
-
-    const userMsg = document.createElement('div');
-    userMsg.className = 'message user';
-    userMsg.textContent = userText;
-
-    userBlock.appendChild(userLabel);
-    userBlock.appendChild(userMsg);
+    userBlock.innerHTML = `
+      <div class="label">You</div>
+      <div class="message user">${userText}</div>
+    `;
     chatContent.appendChild(userBlock);
     chatContent.scrollTop = chatContent.scrollHeight;
-
     input.value = '';
 
     const response = await fetch('/get_response', {
@@ -250,19 +252,37 @@
 
     const botBlock = document.createElement('div');
     botBlock.className = 'message-container bot-container';
-
-    const botLabel = document.createElement('div');
-    botLabel.className = 'label';
-    botLabel.textContent = 'Amny';
-
-    const botMsg = document.createElement('div');
-    botMsg.className = 'message bot';
-    botMsg.textContent = botText;
-
-    botBlock.appendChild(botLabel);
-    botBlock.appendChild(botMsg);
+    botBlock.innerHTML = `
+      <div class="label">Amny</div>
+      <div class="message bot">${botText}</div>
+      <div class="feedback-container">
+        <p class="feedback-text">Have I been of any help, dear?</p>
+        <div class="feedback-buttons">
+          <i class="fas fa-thumbs-up" onclick="sendFeedback(1, this)"></i>
+          <i class="fas fa-thumbs-down" onclick="sendFeedback(-1, this)"></i>
+        </div>
+      </div>
+    `;
     chatContent.appendChild(botBlock);
     chatContent.scrollTop = chatContent.scrollHeight;
+  }
+
+  function sendFeedback(score, icon) {
+    const container = icon.parentElement;
+    container.querySelectorAll('i').forEach(i => {
+      i.style.pointerEvents = 'none';
+      i.style.opacity = '0.4';
+    });
+
+    icon.style.color = score === 1 ? '#4caf50' : '#e53935';
+    console.log("User feedback:", score);
+
+    // Optional: send to backend
+    fetch('/submit_feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ feedback: score })
+    }).catch(err => console.error('Feedback error:', err));
   }
 </script>
 

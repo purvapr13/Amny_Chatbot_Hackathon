@@ -28,5 +28,13 @@ def get_response():
 
     return jsonify({"intent": intent, "confidence": confidence, "response": response})
 
+@app.route('/submit_feedback', methods=['POST'])
+def submit_feedback():
+    data = request.get_json()
+    score = data.get('feedback')
+    print(f"User feedback received: {score}")
+    return jsonify({"status": "success"})
+
+
 if __name__ == '__main__':
     app.run(debug=True)
