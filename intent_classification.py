@@ -6,6 +6,7 @@ import json
 with open('intents.json') as f:
     intents = json.load(f)
 
+#TODO: to add another sentence BERT or Distil-BERT classifier
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
