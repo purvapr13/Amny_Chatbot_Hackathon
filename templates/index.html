@@ -4,21 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Amny</title>
-  <!-- Include Font Awesome CDN -->
+  <!-- Font Awesome for the robot icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
   <style>
     :root {
-      --soft-lavender: #9C67B0; /* Softer purple, more soothing */
-      --light-lavender: #E1BEE7; /* Light purple, elegant */
-      --light-rose: #F8BBD0; /* Soft pink, friendly */
-      --powder-blue: #BBDEFB; /* Calming light blue */
-      --light-gray: #F5F5F5; /* Neutral gray */
-      --bubble-pink: #F8C8D8; /* User bubble background */
-      --bubble-lavender: #D1C4E9; /* Bot bubble background */
-      --text-dark: #333333; /* Dark text color for clarity */
-      --radius: 16px; /* Rounded corners */
-      --shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-      --font: 'Segoe UI', 'Poppins', sans-serif; /* Clean and modern font */
+      --soft-lavender: #9C67B0;
+      --light-lavender: #E1BEE7;
+      --light-rose: #F8BBD0;
+      --powder-blue: #BBDEFB;
+      --light-gray: #F5F5F5;
+      --bubble-pink: #F8C8D8;
+      --bubble-lavender: #D1C4E9;
+      --text-dark: #333333;
+      --radius: 16px;
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      --font: 'Segoe UI', 'Poppins', sans-serif;
     }
 
     body {
@@ -158,13 +159,20 @@
       background-color: #D1C4E9;
       border-radius: 5px;
     }
+
+    @media screen and (max-width: 420px) {
+      #chatbox {
+        width: 90%;
+        right: 5%;
+      }
+    }
   </style>
 </head>
 <body>
 
 <!-- Chatbot Button -->
 <button id="chatbot-btn" onclick="toggleChatbox(event)">
-  <i class="fas fa-robot"></i> <!-- Robot Icon from Font Awesome -->
+  <i class="fas fa-robot"></i>
 </button>
 
 <!-- Chatbot Popup -->
@@ -183,20 +191,27 @@
     const chatbox = document.getElementById('chatbox');
     const isVisible = chatbox.style.display === 'flex';
     chatbox.style.display = isVisible ? 'none' : 'flex';
-
-    // Prevent closing when clicking on the button itself
     event.stopPropagation();
   }
 
-  // Close the chatbox if clicked outside
-  document.addEventListener('click', function(event) {
+  // Close chatbox when clicking outside
+  document.addEventListener('click', function (event) {
     const chatbox = document.getElementById('chatbox');
     const chatButton = document.getElementById('chatbot-btn');
-
-    // Check if the click is outside the chatbox and the button
     if (!chatbox.contains(event.target) && event.target !== chatButton) {
       chatbox.style.display = 'none';
     }
+  });
+
+  // Allow sending message on Enter key
+  document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('user-input');
+    input.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
   });
 
   async function sendMessage() {
@@ -206,7 +221,6 @@
 
     if (!userText) return;
 
-    // Create user message block
     const userBlock = document.createElement('div');
     userBlock.className = 'message-container user-container';
 
@@ -225,7 +239,6 @@
 
     input.value = '';
 
-    // Fetch response from Flask
     const response = await fetch('/get_response', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -235,7 +248,6 @@
     const data = await response.json();
     const botText = data.response || "I'm here to empower you 💫";
 
-    // Create bot message block
     const botBlock = document.createElement('div');
     botBlock.className = 'message-container bot-container';
 
