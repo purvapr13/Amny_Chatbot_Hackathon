@@ -91,6 +91,7 @@
     .message {
       max-width: 85%;
       padding: 12px 16px;
+      position: relative;
       border-radius: var(--radius);
       font-size: 14px;
       line-height: 1.4;
@@ -106,16 +107,52 @@
       align-items: flex-start;
     }
 
+    /* User Message Bubble */
     .user .message {
       background-color: var(--bubble-pink);
-      border-bottom-right-radius: 0;
       color: var(--text-dark);
+      position: relative; /* Ensure positioning for the tail */
+      margin-right: 12px;
+      border-radius: 16px; /* Rounded corners for speech bubble */
+      padding: 10px 16px;
+      max-width: 70%;
+      word-wrap: break-word;
     }
 
+    .user .message::after {
+      content: "";
+      position: absolute;
+      right: -12px; /* Position the tail at the right side */
+      bottom: 10px;
+      width: 0;
+      height: 0;
+      border-left: 12px solid var(--bubble-pink); /* Tail color matches bubble */
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+    }
+
+    /* Bot Message Bubble */
     .bot .message {
       background-color: var(--bubble-lavender);
-      border-bottom-left-radius: 0;
       color: var(--text-dark);
+      position: relative; /* Ensure positioning for the tail */
+      margin-left: 12px;
+      border-radius: 16px; /* Rounded corners for speech bubble */
+      padding: 10px 16px;
+      max-width: 70%;
+      word-wrap: break-word;
+    }
+
+    .bot .message::after {
+      content: "";
+      position: absolute;
+      left: -16px; /* Position the tail at the left side */
+      bottom: 10px;
+      width: 0;
+      height: 0;
+      border-right: 12px solid var(--bubble-lavender); /* Tail color matches bubble */
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
     }
 
     #chatbox-input {
@@ -180,6 +217,19 @@
     .feedback-buttons i:hover {
       color: var(--soft-lavender);
     }
+
+    .typing-indicator {
+      background-color: var(--bubble-lavender);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+      max-width: 150px;
+      font-size: 18px;
+      position: relative;
+      color: var(--text-dark);
+      display: inline-block;
+      font-style: italic;
+      font-weight: 500;
+    }
   </style>
 </head>
 <body>
@@ -231,6 +281,7 @@
     const userText = input.value.trim();
     if (!userText) return;
 
+    // Display user's message
     const userBlock = document.createElement('div');
     userBlock.className = 'message-container user-container';
     userBlock.innerHTML = `
@@ -241,6 +292,29 @@
     chatContent.scrollTop = chatContent.scrollHeight;
     input.value = '';
 
+    // Show typing indicator
+    const typingBlock = document.createElement('div');
+    typingBlock.className = 'message-container bot-container';
+    typingBlock.id = 'typing-block';
+    typingBlock.innerHTML = `
+      <div class="label">Amny</div>
+      <div class="typing-indicator" id="typing-text">....</div>
+    `;
+    chatContent.appendChild(typingBlock);
+    chatContent.scrollTop = chatContent.scrollHeight;
+
+    // Animate typing dots
+    let dotCount = 0;
+    const typingText = document.getElementById('typing-text');
+    const typingInterval = setInterval(() => {
+      dotCount = (dotCount + 1) % 4;
+      typingText.textContent = '.'.repeat(dotCount);
+    }, 500);
+
+    // Wait for 2 seconds to simulate typing
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    // Get bot response from server
     const response = await fetch('/get_response', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -250,6 +324,11 @@
     const data = await response.json();
     const botText = data.response || "I'm here to empower you 💫";
 
+    clearInterval(typingInterval);
+    const typing = document.getElementById('typing-block');
+    if (typing) typing.remove();
+
+    // Show real bot message
     const botBlock = document.createElement('div');
     botBlock.className = 'message-container bot-container';
     botBlock.innerHTML = `
@@ -266,6 +345,7 @@
     chatContent.appendChild(botBlock);
     chatContent.scrollTop = chatContent.scrollHeight;
   }
+
 
   function sendFeedback(score, icon) {
     const container = icon.parentElement;
