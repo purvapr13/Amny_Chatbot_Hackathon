@@ -1,3 +1,5 @@
+from sklearn.metrics import accuracy_score, precision_recall_fscore_support
+import numpy as np
 from sklearn.model_selection import train_test_split
 from transformers import DistilBertTokenizer
 import json
@@ -30,8 +32,9 @@ train_texts, val_texts, train_labels, val_labels = train_test_split(texts, label
 tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
 
 # Tokenize the text
-train_encodings = tokenizer(train_texts, truncation=True, padding=True, max_length=64)
-val_encodings = tokenizer(val_texts, truncation=True, padding=True, max_length=64)
+train_encodings = tokenizer(train_texts, truncation=True, padding=True, max_length=128)
+val_encodings = tokenizer(val_texts, truncation=True, padding=True, max_length=128)
+
 
 class IntentDataset(torch.utils.data.Dataset):
     def __init__(self, encodings, labels):
@@ -51,10 +54,7 @@ class IntentDataset(torch.utils.data.Dataset):
 train_dataset = IntentDataset(train_encodings, train_labels)
 val_dataset = IntentDataset(val_encodings, val_labels)
 
-
-"""
-Fine tuning the model using Trainer API
-"""
+# Import necessary libraries for the model and training
 from transformers import DistilBertForSequenceClassification, Trainer, TrainingArguments
 
 # Load pre-trained DistilBERT model with a classification head
@@ -64,14 +64,36 @@ model = DistilBertForSequenceClassification.from_pretrained('distilbert-base-unc
 # Set up training arguments
 training_args = TrainingArguments(
     output_dir='./results',          # output directory
-    eval_strategy="epoch",     # evaluation strategy
-    learning_rate=5e-5,              # learning rate
+    eval_strategy="epoch",           # evaluation strategy
+    save_strategy="epoch",
+    learning_rate=3e-5,              # learning rate
     per_device_train_batch_size=8,   # batch size
     per_device_eval_batch_size=8,    # batch size for evaluation
-    num_train_epochs=10,              # number of epochs
-    weight_decay=0.05,               # strength of weight decay
+    num_train_epochs=12,              # number of epochs
+    weight_decay=0.001,               # strength of weight decay
     logging_dir='./logs',            # directory for storing logs
+    load_best_model_at_end=False,
 )
+
+# Define the compute_metrics function to calculate accuracy, precision, recall, and F1 score
+def compute_metrics(eval_pred):
+    logits, labels = eval_pred
+    predictions = np.argmax(logits, axis=-1)
+
+    # Calculate accuracy
+    accuracy = accuracy_score(labels, predictions)
+
+    # Calculate precision, recall, and F1 score
+    precision, recall, f1, _ = precision_recall_fscore_support(labels, predictions, average=None,
+                                                               labels=list(range(len(class_names))))
+
+    return {
+        'accuracy': accuracy,
+        'precision': precision.tolist(),
+        'recall': recall.tolist(),
+        'f1': f1.tolist()
+    }
+
 
 # Initialize Trainer
 trainer = Trainer(
@@ -79,38 +101,35 @@ trainer = Trainer(
     args=training_args,                  # training arguments
     train_dataset=train_dataset,         # training dataset
     eval_dataset=val_dataset,            # evaluation dataset
+    compute_metrics=compute_metrics      # add the compute_metrics function
 )
 
 # Fine-tune the model
+print("Training will begin now...")
 trainer.train()
-
-# Evaluate the model
-trainer.evaluate()
-
-# Example inference function
-# def predict_intent(text):
-#     encoding = tokenizer(text, return_tensors="pt", truncation=True, padding=True, max_length=64)
-#     with torch.no_grad():
-#         output = model(**encoding)
-#     logits = output.logits
-#     predicted_class_id = torch.argmax(logits, dim=1).item()
-#     return class_names[predicted_class_id]
-#
-# # Test with a new message
-# new_message = "Can you show me some job listings?"
-# intent = predict_intent(new_message)
-# print(f"Predicted intent: {intent}")
+print("Training completed.")
 
 
 # Save the fine-tuned model
-# Save during training
-label2id = {'greet': 0, 'job_listing': 1, 'others': 2}
+label2id = {'greet': 0, 'job_listing': 1, 'others': 2, 'events': 3,
+            'mentorship': 4, 'sessions': 5, 'resume_help': 6,
+            'skill_gap': 7, 'profile_assist': 8, 'about_platform': 9,
+            'demotivated': 10, 'dodging': 11, 'bye': 12, 'fallback': 13}
 id2label = {v: k for k, v in label2id.items()}
 model.config.label2id = label2id
 model.config.id2label = id2label
 model.save_pretrained('./intent_classifier_model')
 tokenizer.save_pretrained('./intent_classifier_model')
 
+#model evaluation
 
+eval_results = trainer.evaluate()
 
+# print precision, recall, and F1 for each class
+for i, intent in enumerate(class_names):
+    print(f"Intent: {intent}")
+    print(f" Precision: {eval_results['eval_precision'][i]:.4f}")
+    print(f" Recall: {eval_results['eval_recall'][i]:.4f}")
+    print(f" F1-Score: {eval_results['eval_f1'][i]:.4f}")
+    print("-----")
 

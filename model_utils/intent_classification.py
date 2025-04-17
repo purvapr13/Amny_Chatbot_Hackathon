@@ -20,6 +20,7 @@ def load_model():
         _model.to(device)
         _model.eval()
         _id2label = _model.config.id2label
+        print(f"Model is loaded on device: {next(_model.parameters()).device}")
 
 
 def predict_intent(text):
