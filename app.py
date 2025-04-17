@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, jsonify
-from intent_classification import predict_intent
-
+from model_utils.intent_classification import load_model
 
 app = Flask(__name__)
+
+load_model()
 
 
 # Home route (renders the chat widget page)
@@ -14,6 +15,9 @@ def index():
 # Chatbot response endpoint
 @app.route('/get_response', methods=['POST'])
 def get_response():
+    # local imports
+    from model_utils.intent_classification import predict_intent
+
     try:
         data = request.get_json(force=True)  # <-- force parsing JSON
     except Exception as e:
@@ -41,9 +45,10 @@ def get_response():
 def submit_feedback():
     data = request.get_json()
     score = data.get('feedback')
-    print(f"User feedback received: {score}")
+    print(f"User feedback received ✅: {score}")
     return jsonify({"status": "success"})
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
+
