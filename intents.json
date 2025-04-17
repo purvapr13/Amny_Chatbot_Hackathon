@@ -1,12 +1,79 @@
 {
-  "greet": ["hello", "hi", "hey", "hola", "namaste", "dear", "good morning", "good night",
+  "greet": [
+    "hello", "hi", "hey", "hola", "namaste", "dear", "good morning", "good night",
     "bye", "nice to meet you", "how are you?", "there?", "I want to talk", "quick query",
-    "pls talk to me", "what's up?", "hiya", "hey there", "hey you"
+    "pls talk to me", "what's up?", "hiya", "hey there", "hey you", "greetings",
+    "sup?", "yo", "anyone there?", "long time no see", "howdy"
   ],
-  "job_listing": ["please show me some jobs", "I want to work", "I am fedup, I need job", "I am bored",
-  "whom to talk for job", "how to get job", "how to switch", "how to find job", "need job urgently",
-  "need wfh job", "any remote job", "any wfh jobs for me?", "will i get any job"],
-  "others": ["how's weather today", "bla bla", "order pizza", "give me food", "buy me diamond ring", "I want cakes",
-  "give me lots of dresses", "i want to look pretty", "how to do makeup", "what to wear today", "I want power","lets go",
-  "take me to trip", "where is paris"]
+  "job_listing": [
+    "please show me some jobs", "I want to work", "I am fedup, I need job", "I am bored",
+    "whom to talk for job", "how to get job", "how to switch", "how to find job", "need job urgently",
+    "need wfh job", "any remote job", "any wfh jobs for me?", "will i get any job",
+    "send me latest job openings", "recommend me a job", "any opportunities for me?", "find me work",
+    "search jobs for me", "what roles are open?", "work from home opportunities",
+    "i am jobless", "new job roles", "freelance jobs available?", "contract based jobs?", "career opportunities"
+  ],
+  "others": [
+    "how's weather today", "bla bla", "order pizza", "give me food", "buy me diamond ring", "I want cakes",
+    "give me lots of dresses", "i want to look pretty", "how to do makeup", "what to wear today", "I want power",
+    "lets go", "take me to trip", "where is paris", "do you like pizza?", "book me a cab", "tell me a joke",
+    "open YouTube", "what's the time?", "play a song", "turn on the lights", "turn off fan", "what's trending?",
+    "i'm bored", "entertain me"
+  ],
+  "events": [
+    "are there any events?", "career events", "upcoming webinars", "women networking events",
+    "workshops for career growth", "job fairs", "community sessions", "mentorship events",
+    "tech meetups", "coding events", "online seminars", "learning webinars", "growth events",
+    "events for professionals", "networking sessions", "tech conferences", "virtual summits",
+    "any webinars today?", "industry sessions", "skill-based events", "career fests",
+    "online conferences", "any HR sessions?", "startup events", "professional meetups"
+  ],
+  "mentorship": [
+    "i need a mentor", "can i talk to a mentor?", "who can guide me?", "mentorship program",
+    "connect me with a mentor", "career guidance", "i want to grow in my career",
+    "who can support my journey?", "mentor me please", "i want a career guide",
+    "find me a coach", "mentor assistance", "need a guide", "career path mentor",
+    "anyone to advise me?", "mentor support", "personal mentor", "talk to a guide",
+    "looking for guidance", "career counselor"
+  ],
+  "sessions": [
+    "available sessions", "details of upcoming sessions", "training programs",
+    "learning opportunities", "when is the next session?", "show me learning sessions",
+    "next training?", "enroll in sessions", "career learning sessions", "workshop dates?",
+    "session schedule", "learning calendar", "what can I learn?", "personal growth sessions",
+    "training calendar", "view sessions list", "development programs", "skills sessions",
+    "tech session list", "book me a session"
+  ],
+  "resume_help": [
+    "upload my resume", "analyze my resume", "resume feedback", "how's my resume?",
+    "suggest improvements for my resume", "resume review", "resume quality check",
+    "resume suggestions", "check resume score", "need help with CV", "improve my CV",
+    "upload my CV", "optimize my resume", "resume polishing", "check my resume",
+    "resume improvement tips", "fix my resume", "review my CV", "give resume suggestions",
+    "resume audit"
+  ],
+  "skill_gap": [
+    "what skills do i need?", "why am I not getting jobs?", "identify my skill gaps",
+    "help me improve my skills", "skill suggestions", "what should i learn?",
+    "which tech stack is in demand?", "am I lacking something?", "suggest courses to improve",
+    "do I need to upskill?", "career skills required?", "lack of technical skills?",
+    "what to learn for jobs?", "check my competencies", "gap in my learning?",
+    "evaluate my skill set", "improve my tech stack", "do I need training?", "skills not matching?",
+    "add new skills"
+  ],
+  "profile_assist": [
+    "update my profile", "sign up help", "how to register?", "can't update my profile",
+    "edit my info", "profile guidance", "how do I sign up?", "change my details",
+    "account help", "assist with profile", "profile update issue", "can’t log in",
+    "edit my account", "registration process", "how to create account?", "fix profile error",
+    "account creation guide", "login assistance", "update personal info", "profile setup help"
+  ],
+  "about_platform": [
+    "what is jobsforher?", "tell me about this platform", "how does this work?",
+    "is this for women only?", "can men use this?", "why should I use this site?",
+    "purpose of jobsforher", "what do you offer?", "services offered?", "platform features",
+    "about your company", "how can this help me?", "is it free?", "who can register?",
+    "tell me more about you", "site overview", "explain platform", "jobsforher intro",
+    "what does this site do?", "what’s your goal?"
+  ]
 }
