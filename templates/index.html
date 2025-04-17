@@ -230,6 +230,26 @@
       font-style: italic;
       font-weight: 500;
     }
+    .buttons-container {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      justify-content: space-between;
+    }
+
+    .quick-reply {
+      background-color: var(--soft-lavender);
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .quick-reply:hover {
+      background-color: #7a4ea0;
+  }
   </style>
 </head>
 <body>
@@ -275,76 +295,137 @@
     });
   });
 
-  async function sendMessage() {
-    const input = document.getElementById('user-input');
-    const chatContent = document.getElementById('chatbox-content');
-    const userText = input.value.trim();
-    if (!userText) return;
+    async function sendMessage() {
+      const input = document.getElementById('user-input');
+      const chatContent = document.getElementById('chatbox-content');
+      const userText = input.value.trim();
+      if (!userText) return;
 
-    // Display user's message
-    const userBlock = document.createElement('div');
-    userBlock.className = 'message-container user-container';
-    userBlock.innerHTML = `
-      <div class="label">You</div>
-      <div class="message user">${userText}</div>
-    `;
-    chatContent.appendChild(userBlock);
-    chatContent.scrollTop = chatContent.scrollHeight;
-    input.value = '';
+      // Display user's message
+      const userBlock = document.createElement('div');
+      userBlock.className = 'message-container user-container';
+      userBlock.innerHTML = `
+        <div class="label">You</div>
+        <div class="message user">${userText}</div>
+      `;
+      chatContent.appendChild(userBlock);
+      chatContent.scrollTop = chatContent.scrollHeight;
+      input.value = '';
+
+      // Show typing indicator
+      showTypingIndicator(chatContent);
+
+      // Get bot response from server
+      const response = await fetch('/get_response', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: userText })
+      });
+
+      const data = await response.json();
+      const botText = data.response || "I'm here to empower you 💫";
+
+      // Hide typing indicator
+      hideTypingIndicator(chatContent);
+
+     // Show real bot message and quick reply buttons
+      const botBlock = document.createElement('div');
+      botBlock.className = 'message-container bot-container';
+      botBlock.innerHTML = `
+        <div class="label">Amny</div>
+        <div class="message bot">${botText}</div>
+      `;
+
+      if (data.show_buttons) {
+        const buttonsHTML = `
+          <div class="buttons-container">
+            <button class="quick-reply" data-button-text="Job Search" onclick="handleButtonClick(event)">Job Search</button>
+            <button class="quick-reply" data-button-text="Mentoring" onclick="handleButtonClick(event)">Mentoring</button>
+            <button class="quick-reply" data-button-text="Community events" onclick="handleButtonClick(event)">Community events</button>
+          </div>
+        `;
+        botBlock.innerHTML += buttonsHTML;
+      }
+
+      chatContent.appendChild(botBlock);
+      chatContent.scrollTop = chatContent.scrollHeight;
+      }
+
 
     // Show typing indicator
-    const typingBlock = document.createElement('div');
-    typingBlock.className = 'message-container bot-container';
-    typingBlock.id = 'typing-block';
-    typingBlock.innerHTML = `
-      <div class="label">Amny</div>
-      <div class="typing-indicator" id="typing-text">....</div>
-    `;
-    chatContent.appendChild(typingBlock);
-    chatContent.scrollTop = chatContent.scrollHeight;
+    function showTypingIndicator(chatContent) {
+      const typingBlock = document.createElement('div');
+      typingBlock.className = 'message-container bot-container';
+      typingBlock.id = 'typing-block';
+      typingBlock.innerHTML = `
+        <div class="label">Amny</div>
+        <div class="typing-indicator" id="typing-text">....</div>
+      `;
+      chatContent.appendChild(typingBlock);
+      chatContent.scrollTop = chatContent.scrollHeight;
+    }
 
-    // Animate typing dots
-    let dotCount = 0;
-    const typingText = document.getElementById('typing-text');
-    const typingInterval = setInterval(() => {
-      dotCount = (dotCount + 1) % 4;
-      typingText.textContent = '.'.repeat(dotCount);
-    }, 500);
+    // Hide typing indicator
+    function hideTypingIndicator(chatContent) {
+      const typing = document.getElementById('typing-block');
+      if (typing) typing.remove();
+    }
 
-    // Wait for 2 seconds to simulate typing
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // Handle Quick replies button clicks
+    function handleButtonClick(event) {
+      const chatContent = document.getElementById('chatbox-content');
+      const buttonText = event.target.getAttribute('data-button-text');
 
-    // Get bot response from server
-    const response = await fetch('/get_response', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: userText })
-    });
+      // Disable all buttons in the container
+      const buttons = chatContent.querySelectorAll('.quick-reply');
+      buttons.forEach(button => {
+        button.disabled = true;
+        button.style.backgroundColor = "#ccc";  // Change the background color to indicate it's disabled
+      });
 
-    const data = await response.json();
-    const botText = data.response || "I'm here to empower you 💫";
+      // Disable the clicked button and set the text to the original label
+      event.target.disabled = true;
+      event.target.style.backgroundColor = "#ccc";  // Change the background color to indicate it's disabled
+      event.target.innerText = event.target.getAttribute('data-button-text');  // Keep the original button text
 
-    clearInterval(typingInterval);
-    const typing = document.getElementById('typing-block');
-    if (typing) typing.remove();
+      // Show a loading indicator while waiting for the backend response
+      const typingBlock = document.createElement('div');
+      typingBlock.className = 'message-container bot-container';
+      typingBlock.id = 'typing-block';
+      typingBlock.innerHTML = `
+        <div class="label">Amny</div>
+        <div class="typing-indicator" id="typing-text">....</div>
+      `;
+      chatContent.appendChild(typingBlock);
+      chatContent.scrollTop = chatContent.scrollHeight;
 
-    // Show real bot message
-    const botBlock = document.createElement('div');
-    botBlock.className = 'message-container bot-container';
-    botBlock.innerHTML = `
-      <div class="label">Amny</div>
-      <div class="message bot">${botText}</div>
-      <div class="feedback-container">
-        <p class="feedback-text">Have I been of any help, dear?</p>
-        <div class="feedback-buttons">
-          <i class="fas fa-thumbs-up" onclick="sendFeedback(1, this)"></i>
-          <i class="fas fa-thumbs-down" onclick="sendFeedback(-1, this)"></i>
-        </div>
-      </div>
-    `;
-    chatContent.appendChild(botBlock);
-    chatContent.scrollTop = chatContent.scrollHeight;
-  }
+      // Send the button text to the backend
+      fetch('/get_response_from_button', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ button: buttonText })  // Pass the button text
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Remove the typing indicator
+        const typing = document.getElementById('typing-block');
+        if (typing) typing.remove();
+
+        // Show the backend response (bot's answer)
+        const botText = data.response || "I'm here to empower you 💫";  // Default message in case no response is received
+
+        const botBlock = document.createElement('div');
+        botBlock.className = 'message-container bot-container';
+        botBlock.innerHTML = `
+          <div class="label">Amny</div>
+          <div class="message bot">${botText}</div>
+        `;
+        chatContent.appendChild(botBlock);
+        chatContent.scrollTop = chatContent.scrollHeight;
+      });
+    }
+
+
 
 
   function sendFeedback(score, icon) {
