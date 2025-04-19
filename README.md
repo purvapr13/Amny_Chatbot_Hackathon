@@ -32,16 +32,9 @@
 ```bash
 pip install -r requirements.txt
 2️⃣ Run the Application
-bash
-Copy
-Edit
 python app.py
 3️⃣ Access in Browser
 Open the following URL in your browser:
-
-cpp
-Copy
-Edit
 http://127.0.0.1:5000
 🧪 Development & Testing
 ✅ Run Unit Tests
@@ -53,9 +46,6 @@ Make sure the Flask server is running for full feature testing.
 
 📦 Deployment Options
 🔹 Deploy on Heroku
-bash
-Copy
-Edit
 git init
 heroku create
 git add .
