@@ -53,9 +53,9 @@
       position: fixed;
       bottom: 90px;
       right: 20px;
-      width: 90vw; /* Use 90% of the viewport width */
+      width: 90vw; /* Use 95% of the viewport width */
       max-width: 350px; /* Prevents it from being too wide on desktop */
-      height: 70vh; /* Use relative height for mobile friendliness */
+      height: 70dvh; /* Use relative height for mobile friendliness */
       max-height: 500px;
       background-color: var(--light-lavender);
       border-radius: var(--radius);
@@ -200,6 +200,24 @@
       background-color: #7a4ea0;
     }
 
+    @media only screen and (max-width: 768px) {
+      .mobile-hidden {
+        display: none !important;
+      }
+    }
+
+    @media screen and (orientation: landscape) and (max-width: 768px) {
+      #chatbox {
+        width: 95vw;
+        height: 90vh;
+        max-height: none;
+        bottom: 10px;
+        right: 10px;
+      }
+    }
+
+
+
     #chatbox-content::-webkit-scrollbar {
       width: 6px;
     }
@@ -290,7 +308,10 @@
 
 <!-- Chatbot Popup -->
 <div id="chatbox" style="display: none;">
-  <div id="chatbox-header">Ask Amny</div>
+  <div id="chatbox-header">
+    Ask Amny
+    <span id="chatbox-close" onclick="closeChatbox()" style="position: absolute; right: 16px; top: 14px; cursor: pointer; font-size: 20px;">&times;</span>
+  </div>
   <div id="chatbox-content"></div>
   <div id="chatbox-input">
     <input type="text" id="user-input" placeholder="Ask me anything..." />
@@ -302,11 +323,17 @@
     function toggleChatbox(event) {
       const chatbox = document.getElementById('chatbox');
       const chatboxContent = document.getElementById('chatbox-content');
+      const chatButton = document.getElementById('chatbot-btn');
       const isVisible = window.getComputedStyle(chatbox).display === 'flex';
 
     // Show chatbox
     if (!isVisible) {
       chatbox.style.display = 'flex';
+
+      // ✅ Hide the button on mobile devices only
+      if (window.innerWidth <= 768) {
+        chatButton.classList.add('mobile-hidden');
+      }
 
       if (!document.getElementById('privacy-notice-block')) {
         const noticeBlock = document.createElement('div');
@@ -332,6 +359,8 @@
 
     } else {
       chatbox.style.display = 'none';
+      // ✅ Show the button again when chatbox is closed
+      chatButton.classList.remove('mobile-hidden');
     }
 
     event.stopPropagation();
@@ -354,6 +383,17 @@
       }
     });
   });
+
+   function closeChatbox() {
+    const chatbox = document.getElementById('chatbox');
+    const chatButton = document.getElementById('chatbot-btn');
+
+    chatbox.style.display = 'none';
+
+    // ✅ Show button again when closing (on all devices)
+    chatButton.classList.remove('mobile-hidden');
+  }
+
 
     let privacyNoticeVisible = true;
 
