@@ -50,7 +50,7 @@
       height: 500px;
       background-color: var(--light-lavender);
       border-radius: var(--radius);
-      display: none;
+      display: flex;
       flex-direction: column;
       box-shadow: var(--shadow);
       overflow: hidden;
@@ -73,6 +73,9 @@
       overflow-y: auto;
       background-color: var(--light-gray);
       border-top: 2px solid var(--light-lavender);
+      display: flex;
+      flex-direction: column;
+      position: relative;
     }
 
     .message-container {
@@ -250,6 +253,21 @@
     .quick-reply:hover {
       background-color: #7a4ea0;
   }
+    #privacy-notice {
+      font-size: 12px; /* Grey font */
+      color: #777; /* Grey font color */
+      background-color: #f9f9f9; /* Very light background */
+      border-radius: 12px;
+      padding: 8px 12px;
+      margin: 10px auto 18px auto;
+      text-align: center;
+      max-width: 80%;
+      line-height: 1.4;
+      opacity: 1; /* Ensure no fading effect initially */
+      z-index: 1; /* Ensure it doesn't cover chat messages */
+      margin-top: 10px; /* Adds space between notice and chat messages */
+    }
+
   </style>
 </head>
 <body>
@@ -260,7 +278,7 @@
 </button>
 
 <!-- Chatbot Popup -->
-<div id="chatbox">
+<div id="chatbox" style="display: none;">
   <div id="chatbox-header">Ask Amny</div>
   <div id="chatbox-content"></div>
   <div id="chatbox-input">
@@ -270,10 +288,41 @@
 </div>
 
 <script>
-  function toggleChatbox(event) {
-    const chatbox = document.getElementById('chatbox');
-    const isVisible = chatbox.style.display === 'flex';
-    chatbox.style.display = isVisible ? 'none' : 'flex';
+    function toggleChatbox(event) {
+      const chatbox = document.getElementById('chatbox');
+      const chatboxContent = document.getElementById('chatbox-content');
+      const isVisible = window.getComputedStyle(chatbox).display === 'flex';
+
+    // Show chatbox
+    if (!isVisible) {
+      chatbox.style.display = 'flex';
+
+      if (!document.getElementById('privacy-notice-block')) {
+        const noticeBlock = document.createElement('div');
+        noticeBlock.className = 'message-container bot-container';
+        noticeBlock.id = 'privacy-notice-block';
+        noticeBlock.innerHTML = `
+          <div class="message bot" style="
+            font-size: 11px;
+            font-style: italic;
+            border-radius: 12px;
+            padding: 8px 12px;
+            line-height: 1.4;
+            background-color: #f9f9f9;
+            color: #777;
+          ">
+            We respect your privacy. We don't store any sensitive personal information.
+            The basic information that you provide to the chatbot will be collected to improve your experience.
+          </div>
+        `;
+
+        chatboxContent.appendChild(noticeBlock);
+      }
+
+    } else {
+      chatbox.style.display = 'none';
+    }
+
     event.stopPropagation();
   }
 
@@ -294,6 +343,8 @@
       }
     });
   });
+
+    let privacyNoticeVisible = true;
 
     async function sendMessage() {
       const input = document.getElementById('user-input');
