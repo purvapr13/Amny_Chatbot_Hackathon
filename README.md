@@ -89,13 +89,11 @@ OpenAI
 Public APIs for job listings, events, and mentorships
 
 Contributors:
-[Your Name], [Contributor Name]
+Bhavya,Purva,Nargis
 
 📬 Contact
 📧 Email: khatri.bhavya22@gmail.com
 
 🐙 GitHub: Bhavya022
 
-yaml
-Copy
-Edit
+
