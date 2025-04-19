@@ -36,18 +36,27 @@
       border-radius: 50%;
       padding: 16px;
       font-size: 28px;
+      width: 60px;         /* Add this */
+      height: 60px;        /* Add this */
+      line-height: 1;      /* Normalize line height */
       border: none;
       cursor: pointer;
       box-shadow: var(--shadow);
       z-index: 1000;
+      display: flex;       /* Add this to center icon */
+      align-items: center;
+      justify-content: center;
     }
+
 
     #chatbox {
       position: fixed;
       bottom: 90px;
       right: 20px;
-      width: 350px;
-      height: 500px;
+      width: 90vw; /* Use 90% of the viewport width */
+      max-width: 350px; /* Prevents it from being too wide on desktop */
+      height: 70vh; /* Use relative height for mobile friendliness */
+      max-height: 500px;
       background-color: var(--light-lavender);
       border-radius: var(--radius);
       display: flex;
@@ -167,6 +176,8 @@
 
     #chatbox-input input {
       flex: 1;
+      min-width: 0;
+      flex-shrink: 1;
       padding: 10px;
       font-size: 14px;
       border-radius: var(--radius);
