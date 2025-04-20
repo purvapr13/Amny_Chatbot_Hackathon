@@ -234,13 +234,13 @@
     }
 
     .feedback-text {
-      font-size: 13px;
+      font-size: 12px;
       margin-bottom: 6px;
       color: #444;
     }
 
     .feedback-buttons i {
-      font-size: 18px;
+      font-size: 15px;
       margin: 0 10px;
       cursor: pointer;
       color: #999;
@@ -439,6 +439,7 @@
 
 
     let privacyNoticeVisible = true;
+    let feedbackShown = false;
 
     async function sendMessage() {
       const input = document.getElementById('user-input');
@@ -494,6 +495,7 @@
 
       chatContent.appendChild(botBlock);
       chatContent.scrollTop = chatContent.scrollHeight;
+      addFeedbackUI(chatContent);
       }
 
 
@@ -567,9 +569,34 @@
         `;
         chatContent.appendChild(botBlock);
         chatContent.scrollTop = chatContent.scrollHeight;
+        addFeedbackUI(chatContent);
       });
     }
 
+     function addFeedbackUI(chatContent) {
+
+      // Check if any quick-reply buttons are still visible
+      const buttons = chatContent.querySelectorAll('.quick-reply');
+      const anyVisibleButtons = Array.from(buttons).some(btn => !btn.disabled);
+
+      if (anyVisibleButtons) return; // Don't show feedback yet
+
+      feedbackShown = true;
+
+      const feedbackBlock = document.createElement('div');
+      feedbackBlock.className = 'message-container bot-container';
+      feedbackBlock.innerHTML = `
+        <div class="feedback-container">
+          <div class="feedback-text">Was this conversation helpful so far?</div>
+          <div class="feedback-buttons">
+            <i class="fas fa-thumbs-up" onclick="sendFeedback(1, this)"></i>
+            <i class="fas fa-thumbs-down" onclick="sendFeedback(0, this)"></i>
+          </div>
+        </div>
+      `;
+      chatContent.appendChild(feedbackBlock);
+      chatContent.scrollTop = chatContent.scrollHeight;
+    }
 
 
 
