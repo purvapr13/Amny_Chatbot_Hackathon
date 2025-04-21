@@ -268,7 +268,22 @@
       z-index: 1; /* Ensure it doesn't cover chat messages */
       margin-top: 10px; /* Adds space between notice and chat messages */
     }
+  
+    .not-interested-btn {
+    background-color: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    padding: 8px 16px;
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
 
+  .not-interested-btn:hover {
+    background-color: #e5e7eb;
+  }  
   </style>
 </head>
 <body>
@@ -304,7 +319,9 @@
   
     <br>
   
-    <button id="not-interested-btn" style="background-color: #ccc; color: #333; padding: 8px 18px; border: none; border-radius: 5px; margin: 5px; cursor: pointer;">
+    <button 
+      id="not-interested-btn" 
+      style="background-color: #ccc; color: #333; padding: 8px 18px; border: none; border-radius: 5px; margin: 5px; cursor: pointer;" onclick="notInterestedAction()">
       Not Interested
     </button>
   </div>
@@ -536,14 +553,25 @@
 
       document.getElementById("google-signin-btn").addEventListener("click", () => {
         google.accounts.id.prompt(); // triggers the popup
-      });
+      }); };     
+      function notInterestedAction() {  
+      console.log("User clicked 'Not Interested'");
+  const chatContent = document.getElementById('chatbox-content');
+  const authBox = document.getElementById('auth-box');
 
-      document.getElementById("not-interested-btn").addEventListener("click", () => {
-        document.getElementById("auth-box").style.display = 'none';
-        showChatbot();
-      });
-    };     
+  // Remove auth box (sign-in prompt)
+  authBox.style.display = 'none';
 
+  // Show a message that the user can continue without signing in
+  const messageBlock = document.createElement('div');
+  messageBlock.className = 'message-container bot-container';
+  messageBlock.innerHTML = `
+    <div class="label">Amny</div>
+    <div class="message bot">No worries! You can continue chatting without signing in. Let me know how I can assist you today ✨</div>
+  `;
+  chatContent.appendChild(messageBlock);
+  chatContent.scrollTop = chatContent.scrollHeight;
+}
    
     
     function handleCredentialResponse(response) {
