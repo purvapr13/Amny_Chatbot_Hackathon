@@ -1,6 +1,6 @@
 # 🌟 Amny - AI Chatbot for Career Guidance
 
-**Urbot** is an AI-powered chatbot designed to guide users through their career journey. Whether you're looking for jobs, mentorship opportunities, or local events, Urbot is here to help—quickly, smartly, and efficiently.
+**Amny** is an AI-powered chatbot designed to guide users through their career journey. Whether you're looking for jobs, mentorship opportunities, or local events, Urbot is here to help—quickly, smartly, and efficiently.
 
 ---
 
@@ -51,35 +51,18 @@ heroku create
 git add .
 git commit -m "Initial commit"
 git push heroku master
-🐳 Docker Deployment
-Create a Dockerfile and deploy it to platforms like:
-
-AWS
-
-DigitalOcean
-
-Azure
-
-🔮 Planned Enhancements
-🤖 Smarter AI Conversation Handling
-
-🌍 Multi-Language Support
-
-📊 User Analytics & Insights
-
-📱 Mobile-Friendly UI Improvements
 
 🙌 Acknowledgments
 Thanks to the Hackathon team for collaboration, and open-source tools like:
 
-Flask
+Flask,Fast API
 
 OpenAI
 
 Public APIs for job listings, events, and mentorships
 
 Contributors:
-Bhavya,Purva,Nargis
+Bhavya,Purva
 
 📬 Contact
 📧 Email: khatri.bhavya22@gmail.com
