@@ -1,4 +1,4 @@
-# 🌟 Urbot - AI Chatbot for Career Guidance
+# 🌟 Amny - AI Chatbot for Career Guidance
 
 **Urbot** is an AI-powered chatbot designed to guide users through their career journey. Whether you're looking for jobs, mentorship opportunities, or local events, Urbot is here to help—quickly, smartly, and efficiently.
 
