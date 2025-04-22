@@ -253,7 +253,7 @@ function sendFeedback(score, icon) {
   }).catch(err => console.error('Feedback error:', err));
 }
 
-const clientId = "518842382134-df825f3u5oqab9l7linsgrr4h8mhutbo.apps.googleusercontent.com";
+const clientId = "824021740190-c4tbe11ud4pvj6ctil2e4d7uuna5hg1b.apps.googleusercontent.com";
 
 window.onload = () => {
   google.accounts.id.initialize({
