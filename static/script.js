@@ -305,6 +305,8 @@ function notInterestedAction() {
 function handleCredentialResponse(response) {
   console.log("Encoded JWT ID token: " + response.credential);
 
+  authToken = response.credential;
+
   const payload = parseJwt(response.credential);
   console.log("User Info:", payload);
 
@@ -349,8 +351,13 @@ function showChatbot(token = null) {
 function signOut() {
   console.log("Sign-out triggered");
 
+    if (!authToken) {
+    console.log("No token found, user might not be logged in.");
+    return;
+    }
+
   // Sign out from Google by revoking the token
-  google.accounts.id.revoke(token, function() {
+  google.accounts.id.revoke(authToken, function() {
     console.log("User signed out from Google");
 
     // Clear the chat history
