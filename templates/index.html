@@ -18,36 +18,45 @@
 </button>
 
 <!-- Chatbot Popup -->
-  <div id="chatbox" style="display: none;">
-    <div id="chatbox-header">Ask Amny</div>
-    <div id="chatbox-content"></div>
-    <div id="auth-box"
-      style="padding: 20px; text-align: center; border: 1px solid #ccc; border-radius: 10px; max-width: 400px; margin: auto;">
-      <h3>Welcome to AI Chat Assistant</h3>
-      <p>To view your chat history, personalized conversation, and resume tips, please sign in with Google.</p>
+<div id="chatbox" style="display: none;">
+  <div id="chatbox-header">Ask Amny</div>
+  <div id="chatbox-content"></div>
 
-      <div id="g_id_onload" data-client_id="518842382134-df825f3u5oqab9l7linsgrr4h8mhutbo.apps.googleusercontent.com"
-        data-context="signin" data-callback="handleCredentialResponse" data-auto_prompt="false">
-      </div>
+  <!-- Auth Box -->
+  <div id="auth-box"
+    style="padding: 20px; text-align: center; border: 1px solid #ccc; border-radius: 10px; max-width: 400px; margin: auto;">
+    <h3>Welcome to AI Chat Assistant</h3>
+    <p>To view your chat history, personalized conversation, and resume tips, please sign in with Google.</p>
 
-      <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with"
-        data-shape="pill" data-logo_alignment="left">
-      </div>
-
-      <br>
-
-      <button id="not-interested-btn"
-        style="background-color: #ccc; color: #333; padding: 8px 18px; border: none; border-radius: 5px; margin: 5px; cursor: pointer;"
-        onclick="notInterestedAction()">
-        No, Thanks
-      </button>
+    <div id="g_id_onload" data-client_id="518842382134-df825f3u5oqab9l7linsgrr4h8mhutbo.apps.googleusercontent.com"
+      data-context="signin" data-callback="handleCredentialResponse" data-auto_prompt="false">
     </div>
 
-    <div id="chatbox-input">
-      <input type="text" id="user-input" placeholder="Ask me anything..." />
-      <button onclick="sendMessage()">Send</button>
+    <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with"
+      data-shape="pill" data-logo_alignment="left">
     </div>
-    </div>
+
+    <br>
+
+    <button id="not-interested-btn"
+      style="background-color: #ccc; color: #333; padding: 8px 18px; border: none; border-radius: 5px; margin: 5px; cursor: pointer;"
+      onclick="notInterestedAction()">
+      No, Thanks
+    </button>
+  </div>
+
+  <!-- Sign Out Button -->
+  <button id="google-signout-btn" style="display: none;">
+    Sign Out
+  </button>
+
+  <!-- Chatbox Input Box (Inside chatbox) -->
+  <div id="chatbox-input">
+    <input type="text" id="user-input" placeholder="Ask me anything..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
 <script src="../static/script.js"></script>
 
 </body>

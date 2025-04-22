@@ -304,3 +304,26 @@
     .not-interested-btn:hover {
       background-color: #e5e7eb;
     }
+
+    /* Sign-Out Button Styles */
+    #google-signout-btn {
+      display: none; /* Hide the button initially */
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: var(--soft-lavender);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 14px;
+      box-shadow: var(--shadow);
+      transition: background-color 0.3s ease;
+      z-index: 2000; /* Ensure it's above other elements */
+    }
+
+    #google-signout-btn:hover {
+      background-color: #7a4ea0; /* Darker lavender on hover */
+    }
+

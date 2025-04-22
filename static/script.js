@@ -1,9 +1,11 @@
+// Function to toggle the chatbox visibility
 function toggleChatbox(event) {
   const chatbox = document.getElementById('chatbox');
   const chatboxContent = document.getElementById('chatbox-content');
   const chatButton = document.getElementById('chatbot-btn');
   const isVisible = window.getComputedStyle(chatbox).display === 'flex';
 
+  // Show chatbox
   if (!isVisible) {
     chatbox.style.display = 'flex';
     if (window.innerWidth <= 768) chatButton.classList.add('mobile-hidden');
@@ -15,6 +17,7 @@ function toggleChatbox(event) {
       chatbox.style.height = `${Math.floor(visualHeight * 0.7)}px`;
     }
 
+    // Show privacy notice if not already shown
     if (!document.getElementById('privacy-notice-block')) {
       const noticeBlock = document.createElement('div');
       noticeBlock.className = 'message-container bot-container';
@@ -40,10 +43,13 @@ function toggleChatbox(event) {
     chatbox.style.display = 'none';
     chatButton.classList.remove('mobile-hidden');
   }
+
+  // Update chatbox height
   updateChatboxHeight();
   event.stopPropagation();
 }
 
+// Close the chatbox if user clicks outside
 document.addEventListener('click', function (event) {
   const chatbox = document.getElementById('chatbox');
   const chatButton = document.getElementById('chatbot-btn');
@@ -53,10 +59,12 @@ document.addEventListener('click', function (event) {
   }
 });
 
+// Prevent clicks inside the chatbox from closing it
 document.getElementById('chatbox').addEventListener('click', function (event) {
   event.stopPropagation();
 });
 
+// Add event listener for the 'Enter' key to send messages
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('user-input');
   input.addEventListener('keypress', function (e) {
@@ -66,6 +74,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// Sign-out functionality
+function handleSignOut() {
+  google.accounts.id.disableAutoSelect(); // Clear session
+  document.getElementById('google-signout-btn').style.display = 'none'; // Hide sign-out button
+  console.log("Signed out.");
+}
 
 function closeChatbox() {
   const chatbox = document.getElementById('chatbox');
@@ -265,7 +280,9 @@ window.onload = () => {
   document.getElementById("google-signin-btn").addEventListener("click", () => {
     google.accounts.id.prompt(); // triggers the popup
   });
+
 };
+
 function notInterestedAction() {
   console.log("User clicked 'Not Interested'");
   const chatContent = document.getElementById('chatbox-content');
@@ -285,9 +302,10 @@ function notInterestedAction() {
   chatContent.scrollTop = chatContent.scrollHeight;
 }
 
-
 function handleCredentialResponse(response) {
   console.log("Encoded JWT ID token: " + response.credential);
+
+  authToken = response.credential;
 
   const payload = parseJwt(response.credential);
   console.log("User Info:", payload);
@@ -298,6 +316,14 @@ function handleCredentialResponse(response) {
   chatbox.innerHTML += `<div class="message-container bot-container">
     <div class="message bot">Welcome, ${payload.name} 👋</div>
   </div>`;
+
+  // Show Sign-Out button
+  document.getElementById("google-signout-btn").style.display = "block";
+  console.log("Sign-out button displayed.");
+
+  // Add event listener for sign-out dynamically when user is logged in
+  document.getElementById("google-signout-btn").addEventListener("click", signOut);
+  console.log("Sign-out button displayed.");
 }
 
 function parseJwt(token) {
@@ -316,8 +342,47 @@ function showChatbot(token = null) {
 
   if (token) {
     console.log("Authenticated chatbot session. Token:", token);
-    // Optional: personalize chatbot or load user history
+    // Optionally, personalize chatbot or load user history
   } else {
     console.log("Guest mode chatbot");
   }
 }
+
+function signOut() {
+  console.log("Sign-out triggered");
+
+    if (!authToken) {
+    console.log("No token found, user might not be logged in.");
+    return;
+    }
+
+  // Sign out from Google by revoking the token
+  google.accounts.id.revoke(authToken, function() {
+    console.log("User signed out from Google");
+
+    // Clear the chat history
+    const chatbox = document.getElementById("chatbox-content");
+    chatbox.innerHTML = ''; // Clear chat history
+
+    // Show the sign-out confirmation message
+    const logoutMessageBlock = document.createElement('div');
+    logoutMessageBlock.className = 'message-container bot-container';
+    logoutMessageBlock.innerHTML = `
+      <div class="label">Amny</div>
+      <div class="message bot">You have successfully logged out. See you next time! 👋</div>
+    `;
+    chatbox.appendChild(logoutMessageBlock);
+    chatbox.scrollTop = chatbox.scrollHeight; // Scroll to the new message
+
+    // Hide the chat container and show the auth box (sign-in box)
+    document.getElementById("chat-container").style.display = "none";  // Hide the chat container
+    document.getElementById("auth-box").style.display = "block";  // Show the sign-in box
+
+    // Hide the Sign-Out button
+    document.getElementById("google-signout-btn").style.display = "none";  // Hide the sign-out button
+
+    console.log("User signed out.");
+  });
+}
+
+
