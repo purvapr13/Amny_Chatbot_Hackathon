@@ -192,8 +192,9 @@ function handleButtonClick(event) {
   fetch('/get_response_from_button', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ button: buttonText })
-  })
+    body: JSON.stringify({ message: "",             // Required by FastAPI model
+                           button: buttonText })
+        })
     .then(response => response.json())
     .then(data => {
       const typing = document.getElementById('typing-block');

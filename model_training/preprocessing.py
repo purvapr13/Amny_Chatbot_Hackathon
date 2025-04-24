@@ -63,10 +63,10 @@ model = DistilBertForSequenceClassification.from_pretrained('distilbert-base-unc
 
 # Set up training arguments
 training_args = TrainingArguments(
-    output_dir='./results',          # output directory
+    output_dir='../results',          # output directory
     eval_strategy="epoch",           # evaluation strategy
     save_strategy="epoch",
-    learning_rate=3e-5,              # learning rate
+    learning_rate=2e-5,              # learning rate
     per_device_train_batch_size=8,   # batch size
     per_device_eval_batch_size=8,    # batch size for evaluation
     num_train_epochs=12,              # number of epochs
@@ -113,8 +113,9 @@ print("Training completed.")
 # Save the fine-tuned model
 label2id = {'greet': 0, 'job_listing': 1, 'others': 2, 'events': 3,
             'mentorship': 4, 'sessions': 5, 'resume_help': 6,
-            'skill_gap': 7, 'profile_assist': 8, 'about_platform': 9,
-            'demotivated': 10, 'dodging': 11, 'bye': 12, 'fallback': 13}
+            'skill_gap': 7, 'profile_assist': 8,
+            'demotivated': 9, 'dodging': 10, 'bye': 11, 'fallback': 12,
+            'faq': 13, 'contact': 14}
 id2label = {v: k for k, v in label2id.items()}
 model.config.label2id = label2id
 model.config.id2label = id2label
