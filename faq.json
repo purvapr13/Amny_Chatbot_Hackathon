@@ -1,0 +1,222 @@
+[
+  {
+    "question": "What is HerKey?",
+    "answer": "HerKey is a platform designed to empower women professionals by providing access to job opportunities, upskilling programs, mentorship, and career resources tailored to support women restarting or advancing their careers.",
+    "tags": ["platform functionality", "career services", "women empowerment"]
+  },
+  {
+    "question": "What is the HerKey chatbot?",
+    "answer": "The HerKey chatbot is a virtual assistant that helps users explore career options, find job opportunities, register for events, and get answers to commonly asked questions about the platform and its offerings.",
+    "tags": ["platform functionality", "career services", "chatbot"]
+  },
+  {
+    "question": "Who can use HerKey?",
+    "answer": "Any woman looking to return to the workforce, pivot her career, or grow professionally can benefit from HerKey. The platform also supports fresh graduates, experienced professionals, and women looking for flexible work options.",
+    "tags": ["target audience", "women empowerment", "career growth"]
+  },
+  {
+    "question": "Is there a registration fee for using HerKey?",
+    "answer": "No, signing up on HerKey is completely free. However, some sessions are having small fees which is explicitly mentioned at HerKey's page.",
+    "tags": ["platform functionality", "general support"]
+  },
+  {
+    "question": "How can I find job opportunities on HerKey?",
+    "answer": "You can browse job listings directly through the HerKey website or ask the chatbot for help finding jobs based on your location, skill set, or preferred work type (remote, full-time, part-time).",
+    "tags": ["career services", "job search", "remote jobs"]
+  },
+  {
+    "question": "Can the HerKey chatbot help me apply for jobs?",
+    "answer": "Yes, the chatbot can guide you through the job application process by suggesting relevant roles and helping you submit your application directly via HerKey.",
+    "tags": ["platform functionality", "career services", "chatbot", "job application"]
+  },
+  {
+    "question": "I’ve been on a career break. Is HerKey suitable for me?",
+    "answer": "Absolutely! HerKey specializes in helping women on a career break find suitable returnship programs, mentorship, and curated job roles from inclusive employers.",
+    "tags": ["target audience", "career break", "women support"]
+  },
+  {
+    "question": "What are returnship programs?",
+    "answer": "Returnships are short-term, internship-style roles designed for women returning to work after a career break. They help bridge skill gaps and ease the transition back into the workforce.",
+    "tags": ["career services", "career break", "returnship"]
+  },
+  {
+    "question": "Does HerKey offer career counseling or mentorship?",
+    "answer": "Yes, HerKey regularly hosts mentorship programs and connects users with career coaches and industry experts to support professional development.",
+    "tags": ["career services", "mentorship", "professional development"]
+  },
+  {
+    "question": "Can I upskill through HerKey?",
+    "answer": "Yes, HerKey offers a wide range of learning opportunities including workshops, certification courses, webinars, and upskilling programs in areas like technology, leadership, communication, and more.",
+    "tags": ["career services", "upskilling", "learning opportunities"]
+  },
+  {
+    "question": "How do I join a HerKey event or webinar?",
+    "answer": "You can view upcoming events on the HerKey platform or ask the chatbot to show you what’s coming up. Registration is typically free or low-cost.",
+    "tags": ["events and sessions", "platform functionality"]
+  },
+  {
+    "question": "What types of companies partner with HerKey?",
+    "answer": "HerKey partners with organizations committed to diversity and inclusion. These include startups, MNCs, NGOs, and flexible work employers who are open to hiring women returnees.",
+    "tags": ["career services", "partnerships", "diversity", "inclusion"]
+  },
+  {
+    "question": "Does HerKey help with resume building?",
+    "answer": "Yes, through expert sessions and downloadable templates, HerKey provides guidance on resume writing and improving your professional profile.",
+    "tags": ["career services", "general support", "resume building"]
+  },
+  {
+    "question": "Is there support for remote or part-time jobs?",
+    "answer": "Definitely. HerKey actively curates remote, freelance, part-time, and flexible job roles for women seeking work-life balance.",
+    "tags": ["career services", "job search", "remote jobs", "part-time jobs"]
+  },
+  {
+    "question": "How does HerKey ensure employer credibility?",
+    "answer": "HerKey only lists roles from verified companies and encourages employers to commit to inclusive practices. The platform also features reviews and ratings from other users.",
+    "tags": ["platform functionality", "career services", "employer credibility"]
+  },
+  {
+    "question": "Can I use the chatbot anonymously?",
+    "answer": "Yes, the chatbot does not require personal information for most queries, but for personalized assistance like job matching or application tracking, login may be required.",
+    "tags": ["platform functionality", "privacy and security"]
+  },
+  {
+    "question": "What if I face issues with an employer listed on HerKey?",
+    "answer": "You can report any concerns directly through the platform or via chatbot support. The HerKey team will look into the matter and take necessary action.",
+    "tags": ["general support", "platform functionality"]
+  },
+  {
+    "question": "How do I stay updated on new job openings or events?",
+    "answer": "You can enable notifications on your HerKey profile, subscribe to newsletters, or ask the chatbot for daily/weekly updates on new listings.",
+    "tags": ["events and sessions", "career services", "notifications"]
+  },
+  {
+    "question": "Can men use the HerKey chatbot?",
+    "answer": "While the HerKey platform is tailored for women, anyone seeking information about gender-inclusive hiring or supporting women in the workplace can interact with the chatbot.",
+    "tags": ["platform functionality", "gender-inclusive"]
+  },
+  {
+    "question": "How do I delete my HerKey account?",
+    "answer": "You can request account deletion by emailing support@herkey.com or through the profile settings section. For assistance, the chatbot can also guide you through this process.",
+    "tags": ["platform functionality", "general support"]
+  },
+  {
+    "question": "Can I save jobs to view later on HerKey?",
+    "answer": "Yes, you can bookmark or save job listings to your profile and access them anytime under the 'Saved Jobs' section.",
+    "tags": ["career services", "platform functionality", "saved jobs"]
+  },
+  {
+    "question": "How do I know if a job is still accepting applications?",
+    "answer": "Jobs are removed when no longer accepting applications.",
+    "tags": ["career services", "job search", "job status"]
+  },
+  {
+    "question": "Does HerKey offer jobs outside India?",
+    "answer": "No, Presently HerKey is available in India only, but remote roles from global companies are available at HerKey job search.",
+    "tags": ["career services", "location", "global roles"]
+  },
+  {
+    "question": "Can I update my profile after registration?",
+    "answer": "Yes, you can update your profile details, preferences, and resume anytime from your dashboard or from chatbot.",
+    "tags": ["platform functionality", "career services", "profile update"]
+  },
+  {
+    "question": "How are mentors selected on HerKey?",
+    "answer": "Mentors are experienced professionals vetted by HerKey. They come from diverse industries and are passionate about women’s career growth.",
+    "tags": ["mentorship", "professional development", "women empowerment"]
+  },
+  {
+    "question": "Can I get reminders for upcoming webinars?",
+    "answer": "Yes, after registering for a webinar, you can enable email or in-app reminders to stay informed.",
+    "tags": ["events and sessions", "reminders"]
+  },
+  {
+    "question": "Is my personal information safe on HerKey?",
+    "answer": "Yes, HerKey uses secure protocols and data privacy practices to protect your information. You can also control what details are visible.",
+    "tags": ["privacy and security", "data security"]
+  },
+  {
+    "question": "Can I get job recommendations based on my skills?",
+    "answer": "Yes, HerKey uses your profile information to suggest roles that match your skills, interests, and preferences.",
+    "tags": ["career services", "job recommendations", "skills matching"]
+  },
+  {
+    "question": "What industries are most active on HerKey?",
+    "answer": "HerKey features opportunities across tech, finance, education, non-profits, and creative industries.",
+    "tags": ["career services", "industries", "opportunities"]
+  },
+  {
+    "question": "How do I join the HerKey community groups?",
+    "answer": "You can explore and join community groups through your dashboard. These include groups by interest, location, or profession.",
+    "tags": ["events and sessions", "community", "groups"]
+  },
+  {
+    "question": "Are there any age limits for using HerKey?",
+    "answer": "No, HerKey supports women at all stages of their careers — from fresh graduates to those re-entering the workforce after retirement.",
+    "tags": ["target audience", "career stages"]
+  },
+  {
+    "question": "Does HerKey support neurodiverse or differently-abled job seekers?",
+    "answer": "Yes, HerKey partners with inclusive employers and curates roles and support resources for neurodiverse and differently-abled women.",
+    "tags": ["target audience", "inclusive employers", "support"]
+  },
+  {
+    "question": "How long does it take to hear back after applying for a job?",
+    "answer": "Response times vary by employer, HerKey only provides an interface to find those jobs.",
+    "tags": ["career services", "job search", "response time"]
+  },
+  {
+    "question": "Can I receive notifications on WhatsApp or SMS?",
+    "answer": "Currently, HerKey primarily sends updates via email and in-app notifications.",
+    "tags": ["events and sessions", "notifications"]
+  },
+  {
+    "question": "Do I need to upload a resume to apply for jobs?",
+    "answer": "Yes, most job applications require a resume. HerKey offers templates and tips if you need help building or updating yours.",
+    "tags": ["career services", "resume building"]
+  },
+  {
+    "question": "Can I schedule a 1:1 session with a career coach?",
+    "answer": "Yes, you can book personalized sessions with career coaches through the mentorship section.",
+    "tags": ["mentorship", "career services"]
+  },
+  {
+    "question": "How do I report a technical issue on the HerKey site?",
+    "answer": "You can report technical issues via the chatbot, or email the support team at support@herkey.com.",
+    "tags": ["general support", "platform functionality"]
+  },
+  {
+    "question": "Can I use HerKey in regional languages?",
+    "answer": "Currently, HerKey is available in English, but support for regional languages is being explored based on user feedback.",
+    "tags": ["platform functionality", "language support"]
+  },
+  {
+    "question": "Does HerKey provide any scholarship opportunities?",
+    "answer": "Yes, HerKey provides scholarships for women who are struggling to return to work after a career break.",
+    "tags": ["career services", "scholarships", "financial assistance"]
+  },
+  {
+    "question": "What kind of sessions does HerKey offer?",
+    "answer": "HerKey offers a variety of sessions including motivational talks, interview preparation, hiring discussions, story-sharing from successful women, networking meetups, support group circles, and casual 'Life Unplugged' sessions. These are designed to empower women at different career stages.",
+    "tags": ["events and sessions", "sessions", "career guidance"]
+  },
+  {
+    "question": "Can I watch recorded sessions on HerKey?",
+    "answer": "Yes! HerKey allows users to watch recorded sessions at their convenience. This helps members catch up on impactful discussions and expert talks they may have missed live.",
+    "tags": ["events and sessions", "sessions", "recorded"]
+  },
+  {
+    "question": "Is there a way to get notified about live sessions?",
+    "answer": "Absolutely. HerKey sends notifications and reminders about upcoming live sessions so you never miss a session that aligns with your career goals or interests.",
+    "tags": ["events and sessions", "reminders"]
+  },
+  {
+    "question": "Can I mark sessions as 'Interested' for later?",
+    "answer": "Yes, you can mark sessions as 'Interested' to bookmark them and get updates or reminders. It also helps HerKey recommend similar sessions based on your interest.",
+    "tags": ["events and sessions", "sessions", "recommendations"]
+  },
+  {
+    "question": "How does HerKey help women restart or advance their careers?",
+    "answer": "HerKey supports career restarters and professionals through sessions on hiring, interview prep, mentorship, networking, and skill-building. The platform also provides a space to connect with like-minded women and learn from their journeys.",
+    "tags": ["career services", "career restart", "women empowerment"]
+  }
+]

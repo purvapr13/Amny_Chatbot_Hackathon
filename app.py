@@ -3,18 +3,26 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
+from contextlib import asynccontextmanager
 
 # Local imports
 from model_utils.intent_classification import predict_intent, load_model
 from features import dodging, greet, bye
 
-app = FastAPI()
 
-# Load intent classification model on startup
+ml_models = {}
 
-@app.on_event("startup")
-def on_startup():
-    load_model()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Load the ML model
+    ml_models["bert_classification"] = load_model()
+    yield
+    # Clean up the ML models and release the resources
+    ml_models.clear()
+
+
+app = FastAPI(lifespan=lifespan)
 
 # Mount static files (for JS, CSS, etc.)
 app.mount("/static", StaticFiles(directory="static"), name="static")
