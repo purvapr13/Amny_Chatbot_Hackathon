@@ -35,14 +35,7 @@ pip install -r requirements.txt
 python app.py
 3️⃣ Access in Browser
 Open the following URL in your browser:
-http://127.0.0.1:5000
-🧪 Development & Testing
-✅ Run Unit Tests
-bash
-Copy
-Edit
-python -m unittest discover
-Make sure the Flask server is running for full feature testing.
+https://amny.amandliya.com
 
 📦 Deployment Options
 🔹 Deploy on Heroku
@@ -52,21 +45,10 @@ git add .
 git commit -m "Initial commit"
 git push heroku master
 
-🙌 Acknowledgments
-Thanks to the Hackathon team for collaboration, and open-source tools like:
-
-Flask,Fast API
-
-OpenAI
-
-Public APIs for job listings, events, and mentorships
-
-Contributors:
-Bhavya,Purva
 
 📬 Contact
+📧 Email: purvapr13@gmail.com
 📧 Email: khatri.bhavya22@gmail.com
 
-🐙 GitHub: Bhavya022
 
 
