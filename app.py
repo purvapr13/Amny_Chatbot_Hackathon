@@ -11,7 +11,10 @@ from features import dodging, greet, bye
 app = FastAPI()
 
 # Load intent classification model on startup
-load_model()
+
+@app.on_event("startup")
+def on_startup():
+    load_model()
 
 # Mount static files (for JS, CSS, etc.)
 app.mount("/static", StaticFiles(directory="static"), name="static")

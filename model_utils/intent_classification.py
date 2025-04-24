@@ -1,8 +1,8 @@
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
-import torch.nn.functional as F
 
 model_path = 'intent_classifier_model'
+print("CUDA status", torch.cuda.is_available())
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Internal cache
