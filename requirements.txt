@@ -7,3 +7,5 @@ evaluate
 fastapi
 pydantic
 uvicorn
+langchain
+sentence_transformers

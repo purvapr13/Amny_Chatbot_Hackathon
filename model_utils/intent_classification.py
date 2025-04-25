@@ -14,7 +14,6 @@ _id2label = None
 def load_model():
     global _model, _tokenizer, _id2label
     if _model is None:
-        print("Loading model at startup...")
         _tokenizer = AutoTokenizer.from_pretrained(model_path)
         _model = AutoModelForSequenceClassification.from_pretrained(model_path)
         _model.to(device)

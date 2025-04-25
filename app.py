@@ -8,6 +8,7 @@ from contextlib import asynccontextmanager
 # Local imports
 from model_utils.intent_classification import predict_intent, load_model
 from features import dodging, greet, bye
+from features.faq_rag import load_faq, build_faq_index, query_faq
 
 
 ml_models = {}
@@ -15,10 +16,12 @@ ml_models = {}
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Load the ML model
-    ml_models["bert_classification"] = load_model()
+    print("🚀 Loading models at startup...")
+    ml_models["intent_classifier"] = load_model()
+    faq_data = load_faq()
+    ml_models["faq_index"] = build_faq_index(faq_data)
+    print("✅ Models ready!")
     yield
-    # Clean up the ML models and release the resources
     ml_models.clear()
 
 
@@ -65,6 +68,9 @@ async def get_response(req: MessageRequest):
         show_buttons = True
     elif intent == "bye":
         response = bye.get_random_bye_response()
+    elif intent == "faq":
+        faq_ans = query_faq(ml_models["faq_index"], message)
+        response = faq_ans["answer"]
     else:
         response = f"I understood that as **{intent.replace('_', ' ').title()}**."
 

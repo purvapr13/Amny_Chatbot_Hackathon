@@ -146,6 +146,8 @@ async function sendMessage() {
 
   chatContent.appendChild(botBlock);
   chatContent.scrollTop = chatContent.scrollHeight;
+  // 🔊 Play beep sound for Amny's message
+  document.getElementById('amny-beep').play();
   addFeedbackUI(chatContent);
 }
 
