@@ -6,7 +6,7 @@ from .parse_remotejobs import parse_remote_jobs
 
 def insert_remote_jobs():
     session = SessionLocal()
-    jobs = fetch_remoteful_jobs()
+    jobs = fetch_remoteful_jobs(limit=10, use_cache=True)
 
     print(f"📦 Fetched {len(jobs)} remote jobs. Inserting into DB...")
 
