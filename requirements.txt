@@ -9,3 +9,4 @@ pydantic
 uvicorn
 langchain
 sentence_transformers
+python-dotenv

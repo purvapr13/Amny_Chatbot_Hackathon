@@ -7,3 +7,4 @@ __pycache__/
 # IDEs and editors
 .vscode/
 .idea/
+sessions.db
