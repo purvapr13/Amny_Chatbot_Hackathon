@@ -1,25 +1,27 @@
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 from contextlib import asynccontextmanager
 
 # Local imports
-from model_utils.intent_classification import predict_intent, load_model
+from model_utils.intent_classification import predict_intent, \
+    load_model
 from features import dodging, greet, bye
-from features.faq_rag import load_faq, build_faq_index, query_faq
-
+from features.faq_rag import load_faq, build_faq_index, \
+    query_index, load_demotivated_stories
 
 ml_models = {}
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("🚀 Loading models at startup...")
-    ml_models["intent_classifier"] = load_model()
+    print("🚀 Loading models and embeddings at startup...")
+    ml_models["intent_classification"] = load_model()
     faq_data = load_faq()
-    ml_models["faq_index"] = build_faq_index(faq_data)
+    success_stories_data = load_demotivated_stories()
+    ml_models["index"] = build_faq_index(faq_data, success_stories_data)
     print("✅ Models ready!")
     yield
     ml_models.clear()
@@ -69,8 +71,11 @@ async def get_response(req: MessageRequest):
     elif intent == "bye":
         response = bye.get_random_bye_response()
     elif intent == "faq":
-        faq_ans = query_faq(ml_models["faq_index"], message)
-        response = faq_ans["answer"]
+        result = query_index(ml_models['index'], message, is_faq=True)
+        response = result["matched_text"]
+    elif intent == "demotivated":
+        result = query_index(ml_models['index'], message, is_faq=False)
+        response = result["matched_text"]
     else:
         response = f"I understood that as **{intent.replace('_', ' ').title()}**."
 
@@ -108,5 +113,5 @@ async def get_response_from_button(req: MessageRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, port=5000)
+    uvicorn.run(app, port=8000)
 
