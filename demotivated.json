@@ -6,14 +6,14 @@
     },
     {
       "theme": "demotivated",
-      "story": "J.K. Rowling was rejected by multiple publishers before her *Harry Potter* series was finally accepted. She was a single mother living on welfare, but she never gave up on her writing. Now, *Harry Potter* is one of the most successful literary franchises in history."
+      "story": "J.K. Rowling was rejected by multiple publishers before her \"Harry Potter\" series was finally accepted. She was a single mother living on welfare, but she never gave up on her writing. Now, \"Harry Potter\" is one of the most successful literary franchises in history."
     },
     {
-      "theme": "uncertain about career",
-      "story": "Oprah Winfrey was told she was 'too emotional' for television and faced numerous rejections early in her career. Despite these setbacks, she became a media mogul and philanthropist, hosting *The Oprah Winfrey Show* for 25 years, impacting millions of lives."
+      "theme":"uncertain about career",
+      "story": "Oprah Winfrey was told she was 'too emotional' for television and faced numerous rejections early in her career. Despite these setbacks, she became a media mogul and philanthropist, hosting \"The Oprah Winfrey Show\" for 25 years, impacting millions of lives."
     },
     {
-      "theme": "uncertain about career",
+      "theme":"uncertain about career",
       "story": "Indra Nooyi, born in India, rose to become the CEO of PepsiCo. She faced the challenges of being a woman in a male-dominated industry but used her perseverance and innovative ideas to transform PepsiCo into a global leader in food and beverages."
     },
     {
@@ -37,12 +37,12 @@
       "story": "Frida Kahlo faced chronic pain and personal struggles, yet became one of Mexico’s most influential artists. Her work, reflecting her resilience and deep connection with her identity, inspired generations of women to embrace their challenges and use them as a source of strength."
     },
     {
-      "theme": "uncertain about career",
+      "theme":"uncertain about career",
       "story": "Michelle Obama faced many personal doubts about her career path before becoming the First Lady of the United States. She has since become a global advocate for education, health, and women's empowerment, showing that uncertainty can lead to unexpected success."
     },
     {
       "theme": "returning after break",
-      "story": "Maya Angelou overcame personal trauma and years of hardship to become an influential poet and writer. Her books, including *I Know Why the Caged Bird Sings*, have inspired millions of people to find their voices and persevere through tough times."
+      "story": "Maya Angelou overcame personal trauma and years of hardship to become an influential poet and writer. Her books, including \"I Know Why the Caged Bird Sings\", have inspired millions of people to find their voices and persevere through tough times."
     },
     {
       "theme": "feeling isolated",
@@ -53,7 +53,7 @@
       "story": "Sheryl Sandberg, after facing personal loss and the challenges of being a woman in tech, became the COO of Facebook. Her leadership helped turn Facebook into one of the most influential companies in the world, and she became a voice for women in leadership roles."
     },
     {
-      "theme": "uncertain about career",
+      "theme":"uncertain about career",
       "story": "Ruth Bader Ginsburg was rejected from multiple law firms simply because she was a woman, but she persisted and became a U.S. Supreme Court justice. Her fight for gender equality changed the legal landscape of the United States."
     },
     {
@@ -62,23 +62,23 @@
     },
     {
       "theme": "feeling isolated",
-      "story": "Tina Fey overcame early struggles in the male-dominated world of comedy and became one of the leading voices in TV and film. She is known for her work on *Saturday Night Live* and *30 Rock*, showing that persistence and humor can help break through barriers."
+      "story": "Tina Fey overcame early struggles in the male-dominated world of comedy and became one of the leading voices in TV and film. She is known for her work on \"Saturday Night Live\" and \"30 Rock\", showing that persistence and humor can help break through barriers."
     },
     {
       "theme": "demotivated",
       "story": "Ellen Johnson Sirleaf became the first female president of Liberia, a country recovering from civil war. Her leadership brought peace and economic stability to Liberia, proving that even after conflict, one woman’s determination can spark national change."
     },
     {
-      "theme": "uncertain about career",
+      "theme":"uncertain about career",
       "story": "Ada Lovelace, the first computer programmer, was initially doubted by her peers, but she went on to write the first algorithm intended for a machine. Her contributions paved the way for modern computing."
     },
     {
       "theme": "returning after break",
-      "story": "Arianna Huffington faced personal and professional setbacks before co-founding *The Huffington Post*. She used her experiences to build one of the most influential online platforms, which she later sold for $315 million."
+      "story": "Arianna Huffington faced personal and professional setbacks before co-founding \"The Huffington Post\". She used her experiences to build one of the most influential online platforms, which she later sold for $315 million."
     },
     {
       "theme": "feeling isolated",
-      "story": "Chimamanda Ngozi Adichie faced challenges as a Nigerian woman in a global literary world but became an acclaimed writer. Her works, such as *Americanah*, have explored themes of identity and empowerment, offering insight into the immigrant experience."
+      "story": "Chimamanda Ngozi Adichie faced challenges as a Nigerian woman in a global literary world but became an acclaimed writer. Her works, such as \"Americanah\", have explored themes of identity and empowerment, offering insight into the immigrant experience."
     },
      {
       "theme": "demotivated",
@@ -89,20 +89,20 @@
       "story": "Vera Wang was rejected from fashion design schools and started as a figure skater. At age 40, she opened her bridal boutique and became one of the most celebrated designers."
     },
     {
-      "theme": "uncertain about career",
+      "theme":"uncertain about career",
       "story": "Whitney Wolfe Herd co-founded Tinder, then left after facing a toxic work environment. She created Bumble, revolutionizing the dating industry and becoming a billionaire."
     },
     {
-      "theme": "uncertain about career",
+      "theme":"uncertain about career",
       "story": "Diane von Furstenberg was unsure of her place in fashion but became one of the most powerful women in fashion after launching the iconic wrap dress."
     },
     {
       "theme": "returning after break",
-      "story": "Kathy Bates overcame rejection to win an Academy Award for her role in *Misery*, continuing to build a successful career in film and television."
+      "story": "Kathy Bates overcame rejection to win an Academy Award for her role in \"Misery\", continuing to build a successful career in film and television."
     },
     {
       "theme": "returning after break",
-      "story": "Janet Jackson took a break from music but made a triumphant return with the album *Control*, redefining pop music in the 1980s."
+      "story": "Janet Jackson took a break from music but made a triumphant return with the album \"Control\", redefining pop music in the 1980s."
     },
     {
       "theme": "feeling isolated",
@@ -121,24 +121,24 @@
       "story": "Toni Morrison was told her work would never sell and that she wasn't a 'real writer.' She went on to become the first African American woman to win the Nobel Prize in Literature."
     },
     {
-      "theme": "uncertain about career",
+      "theme":"uncertain about career",
       "story": "Jessica Ennis-Hill, after suffering from multiple injuries, doubted her ability to continue as an athlete. She returned to win Olympic gold in 2012, cementing her legacy in athletics."
     },
     {
-      "theme": "uncertain about career",
+      "theme":"uncertain about career",
       "story": "Melinda Gates, initially unsure about her own role outside of Microsoft, later became a philanthropist, using her wealth to fund the Bill & Melinda Gates Foundation, focusing on global health and women’s empowerment."
     },
     {
       "theme": "returning after break",
-      "story": "Adele, after taking a break from music to focus on family, returned to the music scene with her album *25*, which became a global success and won numerous Grammy Awards."
+      "story": "Adele, after taking a break from music to focus on family, returned to the music scene with her album \"25\", which became a global success and won numerous Grammy Awards."
     },
     {
       "theme": "returning after break",
-      "story": "Julia Roberts took a break from acting after her career hit a rough patch. She returned to star in *Erin Brockovich*, a role that earned her an Academy Award and marked her successful comeback."
+      "story": "Julia Roberts took a break from acting after her career hit a rough patch. She returned to star in \"Erin Brockovich\", a role that earned her an Academy Award and marked her successful comeback."
     },
     {
       "theme": "returning after break",
-      "story": "Mary J. Blige took time off from her music career to focus on her mental health. She made a strong return with her album *My Life II... The Journey Continues*, which received critical acclaim."
+      "story": "Mary J. Blige took time off from her music career to focus on her mental health. She made a strong return with her album \"My Life II... The Journey Continues\", which received critical acclaim."
     },
     {
       "theme": "feeling isolated",
@@ -162,14 +162,14 @@
     },
     {
       "theme": "demotivated",
-      "story": "Lupita Nyong'o was initially discouraged by the rejection and struggles she faced as an actress. She went on to win an Academy Award for her role in *12 Years a Slave*."
+      "story": "Lupita Nyong'o was initially discouraged by the rejection and struggles she faced as an actress. She went on to win an Academy Award for her role in \"12 Years a Slave\"."
     },
     {
-      "theme": "uncertain about career",
+      "theme":"uncertain about career",
       "story": "Anne Wojcicki, after struggling to build a career in science and tech, co-founded 23andMe, a personal genomics company that revolutionized the way people approach health and DNA testing."
     },
     {
-      "theme": "uncertain about career",
+      "theme":"uncertain about career",
       "story": "Debbie Sterling faced doubts in a male-dominated industry, but she went on to found GoldieBlox, a company focused on building toys that encourage young girls to explore engineering and STEM fields."
     },
     {
@@ -178,7 +178,7 @@
     },
     {
       "theme": "returning after break",
-      "story": "Beyoncé, after stepping away from the public eye for a period of time to focus on her family, returned with *Lemonade*, which became a groundbreaking album in both music and culture."
+      "story": "Beyoncé, after stepping away from the public eye for a period of time to focus on her family, returned with \"Lemonade\", which became a groundbreaking album in both music and culture."
     },
     {
       "theme": "feeling isolated",
@@ -193,11 +193,11 @@
       "story": "Aruna Jayanthi, an accomplished leader in the IT industry, started her career at a time when there were fewer women in leadership roles. She overcame challenges in a male-dominated industry to become the CEO of Capgemini India, leading it to significant growth."
     },
     {
-      "theme": "uncertain about career",
-      "story": "Richa Kar, after working in the tech industry, co-founded **Zivame**, India's leading online lingerie retailer. She faced uncertainty and risks when venturing into the e-commerce industry but transformed Zivame into a successful business."
+      "theme":"uncertain about career",
+      "story": "Richa Kar, after working in the tech industry, co-founded \"Zivame\", India's leading online lingerie retailer. She faced uncertainty and risks when venturing into the e-commerce industry but transformed Zivame into a successful business."
     },
     {
-      "theme": "uncertain about career",
+      "theme":"uncertain about career",
       "story": "Sushma Bhatnagar, who started her career in tech as a software engineer, shifted into the role of managing technology-driven business solutions and became a respected leader in the tech sector, helping large companies digitalize their operations."
     },
     {
@@ -210,59 +210,59 @@
     },
     {
       "theme": "feeling isolated",
-      "story": "Indu Rekha, a computer science engineer from India, faced isolation in a male-dominated tech field. Despite these challenges, she went on to co-found **Instamojo**, a successful startup providing payment solutions to small businesses across India."
+      "story": "Indu Rekha, a computer science engineer from India, faced isolation in a male-dominated tech field. Despite these challenges, she went on to co-found \"Instamojo\", a successful startup providing payment solutions to small businesses across India."
     },
     {
       "theme": "feeling isolated",
-      "story": "Anu Acharya, after working in a male-dominated space, founded **Mapmygenome**, a company that offers genomic services to empower individuals to take control of their health. She overcame both professional and personal obstacles to make the company successful."
+      "story": "Anu Acharya, after working in a male-dominated space, founded \"Mapmygenome\", a company that offers genomic services to empower individuals to take control of their health. She overcame both professional and personal obstacles to make the company successful."
     },
     {
       "theme": "feeling isolated",
-      "story": "Nidhi Agarwal, a software engineer, faced isolation early in her career as a woman in the tech industry. She rose to become the Director of Engineering at **Salesforce** India, driving innovation and leading high-performing teams."
+      "story": "Nidhi Agarwal, a software engineer, faced isolation early in her career as a woman in the tech industry. She rose to become the Director of Engineering at \"Salesforce\" India, driving innovation and leading high-performing teams."
     },
     {
       "theme": "demotivated",
-      "story": "Kavita Iyer, an experienced professional in digital marketing, founded **TechShastra**, a leading technology consulting company for small businesses. She pushed through initial setbacks to create a sustainable business model."
+      "story": "Kavita Iyer, an experienced professional in digital marketing, founded \"TechShastra\", a leading technology consulting company for small businesses. She pushed through initial setbacks to create a sustainable business model."
     },
     {
       "theme": "demotivated",
-      "story": "Dr. Shanti Raghavan, a woman with a disability, founded **EnAble India**, an organization that helps people with disabilities find jobs and integrate into the workforce, overcoming personal struggles to impact the lives of thousands."
+      "story": "Dr. Shanti Raghavan, a woman with a disability, founded \"EnAble India\", an organization that helps people with disabilities find jobs and integrate into the workforce, overcoming personal struggles to impact the lives of thousands."
     },
     {
-      "theme": "uncertain about career",
-      "story": "Neha Soni, an early-stage entrepreneur in the fintech space, faced significant uncertainty but went on to co-found **Finbox**, a company revolutionizing credit scoring models for consumers across India."
+      "theme":"uncertain about career",
+      "story": "Neha Soni, an early-stage entrepreneur in the fintech space, faced significant uncertainty but went on to co-found \"Finbox\", a company revolutionizing credit scoring models for consumers across India."
     },
     {
-      "theme": "uncertain about career",
+      "theme":"uncertain about career",
       "story": "Deepa Malik, despite a life-changing accident, went on to become India's first female Paralympic medalist. She transitioned into technology and advocacy, focusing on creating digital solutions for the differently-abled."
     },
     {
       "theme": "returning after break",
-      "story": "Smita Deorah, after a break to raise her children, returned to the tech space and co-founded **BuyHatke**, a platform helping consumers compare online prices. She is now an advocate for women in tech entrepreneurship."
+      "story": "Smita Deorah, after a break to raise her children, returned to the tech space and co-founded \"BuyHatke\", a platform helping consumers compare online prices. She is now an advocate for women in tech entrepreneurship."
     },
     {
       "theme": "returning after break",
-      "story": "Shubhi Tiwari, who took a break from her career in digital marketing, returned to found **InnoHealth**, a tech startup focusing on innovations in healthcare. She continues to build products aimed at improving healthcare delivery."
+      "story": "Shubhi Tiwari, who took a break from her career in digital marketing, returned to found \"InnoHealth\", a tech startup focusing on innovations in healthcare. She continues to build products aimed at improving healthcare delivery."
     },
     {
       "theme": "feeling isolated",
-      "story": "Suman Saraf, an engineer by training, launched **Sapient Automation**, a company providing artificial intelligence and automation services. She faced isolation and skepticism but has now grown the company into a leader in AI automation solutions."
+      "story": "Suman Saraf, an engineer by training, launched \"Sapient Automation\", a company providing artificial intelligence and automation services. She faced isolation and skepticism but has now grown the company into a leader in AI automation solutions."
     },
      {
       "theme": "demotivated",
-      "story": "Dr. V. Shanta, a pioneering oncologist and the chairperson of **Adyar Cancer Institute**, faced numerous obstacles in establishing cancer care in India. Despite these challenges, she helped revolutionize cancer treatment and care in India, saving thousands of lives."
+      "story": "Dr. V. Shanta, a pioneering oncologist and the chairperson of \"Adyar Cancer Institute\", faced numerous obstacles in establishing cancer care in India. Despite these challenges, she helped revolutionize cancer treatment and care in India, saving thousands of lives."
     },
     {
       "theme": "demotivated",
-      "story": "Dr. Prathima Reddy, an obstetrician and gynecologist, initially struggled in her career due to limited opportunities for women in medicine. She became the first woman president of the **Federation of Obstetric and Gynecological Societies of India (FOGSI)** and led significant improvements in maternal healthcare."
+      "story": "Dr. Prathima Reddy, an obstetrician and gynecologist, initially struggled in her career due to limited opportunities for women in medicine. She became the first woman president of the \"Federation of Obstetric and Gynecological Societies of India (FOGSI)\" and led significant improvements in maternal healthcare."
     },
     {
-      "theme": "uncertain about career",
-      "story": "Dr. Kiran Mazumdar-Shaw, despite starting as a young woman in a male-dominated field, founded **Biocon**, India's largest biopharmaceutical company. She overcame significant uncertainty and bias to build a multi-billion-dollar company that is now a global leader in healthcare."
+      "theme":"uncertain about career",
+      "story": "Dr. Kiran Mazumdar-Shaw, despite starting as a young woman in a male-dominated field, founded \"Biocon\", India's largest biopharmaceutical company. She overcame significant uncertainty and bias to build a multi-billion-dollar company that is now a global leader in healthcare."
     },
     {
-      "theme": "uncertain about career",
-      "story": "Dr. Naresh Trehan, a renowned cardiac surgeon, initially faced struggles in his career, but he persisted and founded **Medanta - The Medicity**, one of India's largest healthcare facilities. His success in heart surgery and hospital administration has saved countless lives."
+      "theme":"uncertain about career",
+      "story": "Dr. Naresh Trehan, a renowned cardiac surgeon, initially faced struggles in his career, but he persisted and founded \"Medanta - The Medicity\", one of India's largest healthcare facilities. His success in heart surgery and hospital administration has saved countless lives."
     },
     {
       "theme": "returning after break",
@@ -274,11 +274,11 @@
     },
     {
       "theme": "returning after break",
-      "story": "Dr. Reddy Chandra, after taking a break to focus on her personal life, returned to work as a healthcare consultant for **Hindustan Latex**. She has become an advocate for women’s health in rural India, introducing innovative ways to spread awareness about reproductive health."
+      "story": "Dr. Reddy Chandra, after taking a break to focus on her personal life, returned to work as a healthcare consultant for \"Hindustan Latex\". She has become an advocate for women’s health in rural India, introducing innovative ways to spread awareness about reproductive health."
     },
     {
       "theme": "feeling isolated",
-      "story": "Dr. Geeta Puri, an ophthalmologist, faced isolation in her early career due to the gender bias in medicine. She overcame these challenges to become one of the leading voices in eye care and is a senior consultant at **All India Institute of Medical Sciences (AIIMS)**."
+      "story": "Dr. Geeta Puri, an ophthalmologist, faced isolation in her early career due to the gender bias in medicine. She overcame these challenges to become one of the leading voices in eye care and is a senior consultant at \"All India Institute of Medical Sciences (AIIMS)\"."
     },
     {
       "theme": "feeling isolated",
@@ -290,19 +290,19 @@
     },
     {
       "theme": "demotivated",
-      "story": "Dr. Manju Gupta, a renowned gynecologist, faced many professional challenges but went on to become the founder of **Rainbow Children's Hospital**. She has worked tirelessly to improve maternal and child healthcare in India."
+      "story": "Dr. Manju Gupta, a renowned gynecologist, faced many professional challenges but went on to become the founder of \"Rainbow Children's Hospital\". She has worked tirelessly to improve maternal and child healthcare in India."
     },
     {
       "theme": "demotivated",
-      "story": "Dr. Neelam K. V., an innovative general surgeon, overcame significant opposition in her career but became a top surgeon and a founder of **NOVA Clinics**, a chain of affordable healthcare clinics in India."
+      "story": "Dr. Neelam K. V., an innovative general surgeon, overcame significant opposition in her career but became a top surgeon and a founder of \"NOVA Clinics\", a chain of affordable healthcare clinics in India."
     },
     {
-      "theme": "uncertain about career",
+      "theme":"uncertain about career",
       "story": "Dr. Rani H. J. Joshi, a well-known psychiatrist, initially questioned her decision to pursue psychiatry due to stigma surrounding mental health care. She is now a leading advocate for mental health awareness in India and treats hundreds of patients annually."
     },
     {
-      "theme": "uncertain about career",
-      "story": "Dr. Sonal Chaturvedi, after dealing with professional uncertainty and personal struggles, co-founded **MediSprout**, a healthcare consultancy providing innovative solutions for patient care and hospital management."
+      "theme":"uncertain about career",
+      "story": "Dr. Sonal Chaturvedi, after dealing with professional uncertainty and personal struggles, co-founded \"MediSprout\", a healthcare consultancy providing innovative solutions for patient care and hospital management."
     },
     {
       "theme": "returning after break",
@@ -318,91 +318,91 @@
     },
     {
       "theme": "feeling isolated",
-      "story": "Dr. Kamal Kumar, an anesthesiologist, faced challenges being a woman in the medical field. Despite this, she went on to become a senior consultant in anesthesia at **PGIMER**, contributing significantly to the development of medical protocols in surgery."
+      "story": "Dr. Kamal Kumar, an anesthesiologist, faced challenges being a woman in the medical field. Despite this, she went on to become a senior consultant in anesthesia at \"PGIMER\", contributing significantly to the development of medical protocols in surgery."
     },
        {
       "theme": "demotivated",
-      "story": "Naina Lal Kidwai, the first Indian woman to be elected as the president of the **Federation of Indian Chambers of Commerce & Industry (FICCI)**, faced many challenges in a male-dominated finance industry. She rose to become the country head of **HSBC India**, contributing immensely to the development of India’s financial landscape."
+      "story": "Naina Lal Kidwai, the first Indian woman to be elected as the president of the \"Federation of Indian Chambers of Commerce & Industry (FICCI)\", faced many challenges in a male-dominated finance industry. She rose to become the country head of \"HSBC India\", contributing immensely to the development of India’s financial landscape."
     },
     {
-      "theme": "uncertain about career",
-      "story": "Arundhati Bhattacharya, initially uncertain about her career, became the first woman to chair **State Bank of India (SBI)**. Under her leadership, SBI launched various innovative initiatives to improve financial inclusion and modernize banking systems."
+      "theme":"uncertain about career",
+      "story": "Arundhati Bhattacharya, initially uncertain about her career, became the first woman to chair \"State Bank of India (SBI)\". Under her leadership, SBI launched various innovative initiatives to improve financial inclusion and modernize banking systems."
     },
     {
-      "theme": "uncertain about career",
-      "story": "Shikha Sharma, despite starting her career in consulting, transitioned to finance and became the managing director and CEO of **Axis Bank**. She led the bank through a period of remarkable growth and digital transformation."
-    },
-    {
-      "theme": "returning after break",
-      "story": "Vijayalakshmi Iyer took a break from her career to raise her family and later returned to become the first woman managing director of **IDBI Bank**. She now advocates for more women to take leadership roles in the banking sector."
+      "theme":"uncertain about career",
+      "story": "Shikha Sharma, despite starting her career in consulting, transitioned to finance and became the managing director and CEO of \"Axis Bank\". She led the bank through a period of remarkable growth and digital transformation."
     },
     {
       "theme": "returning after break",
-      "story": "Kalpana Morparia took a break from her banking career and later returned to become the CEO of **JP Morgan India**. She led the firm's growth in India and became a role model for women seeking leadership positions in finance."
+      "story": "Vijayalakshmi Iyer took a break from her career to raise her family and later returned to become the first woman managing director of \"IDBI Bank\". She now advocates for more women to take leadership roles in the banking sector."
     },
     {
       "theme": "returning after break",
-      "story": "Indra Nooyi, although not a part of the financial services sector directly, has been a major influence on global financial leadership. As the CEO of **PepsiCo**, she showcased how women can lead large multinational corporations and make strategic financial decisions."
+      "story": "Kalpana Morparia took a break from her banking career and later returned to become the CEO of \"JP Morgan India\". She led the firm's growth in India and became a role model for women seeking leadership positions in finance."
+    },
+    {
+      "theme": "returning after break",
+      "story": "Indra Nooyi, although not a part of the financial services sector directly, has been a major influence on global financial leadership. As the CEO of \"PepsiCo\", she showcased how women can lead large multinational corporations and make strategic financial decisions."
     },
     {
       "theme": "feeling isolated",
-      "story": "Radhika Gupta, CEO of **Edelweiss Asset Management**, overcame isolation in the finance world to become one of the most recognized women in asset management. Her journey has inspired countless women to enter and excel in the finance industry."
+      "story": "Radhika Gupta, CEO of \"Edelweiss Asset Management\", overcame isolation in the finance world to become one of the most recognized women in asset management. Her journey has inspired countless women to enter and excel in the finance industry."
     },
     {
       "theme": "feeling isolated",
-      "story": "Suneeta Reddy, the managing director of **Apollo Hospitals**, faced isolation in the male-dominated finance and healthcare sectors. She helped guide the hospital group through significant financial growth and played a key role in the company's expansion."
+      "story": "Suneeta Reddy, the managing director of \"Apollo Hospitals\", faced isolation in the male-dominated finance and healthcare sectors. She helped guide the hospital group through significant financial growth and played a key role in the company's expansion."
     },
     {
       "theme": "feeling isolated",
-      "story": "Nupur Jain, a financial analyst and investment banker, had to overcome isolation in her early career but is now a senior leader at **Morgan Stanley**. She has mentored many women in the finance industry and has been an advocate for diversity and inclusion."
+      "story": "Nupur Jain, a financial analyst and investment banker, had to overcome isolation in her early career but is now a senior leader at \"Morgan Stanley\". She has mentored many women in the finance industry and has been an advocate for diversity and inclusion."
     },
     {
       "theme": "demotivated",
-      "story": "Meera Sanyal, a banker who faced many challenges in her career, became the chairperson of **Royal Bank of Scotland** in India. She used her platform to advocate for ethical banking practices and financial inclusion for underserved communities."
+      "story": "Meera Sanyal, a banker who faced many challenges in her career, became the chairperson of \"Royal Bank of Scotland\" in India. She used her platform to advocate for ethical banking practices and financial inclusion for underserved communities."
     },
     {
       "theme": "demotivated",
-      "story": "Anjali Bansal, an entrepreneur and investor, faced challenges as a woman in finance and business. She became a founding partner of **Avaana Capital** and has since invested in several start-ups, focusing on financial inclusion and sustainable development."
+      "story": "Anjali Bansal, an entrepreneur and investor, faced challenges as a woman in finance and business. She became a founding partner of \"Avaana Capital\" and has since invested in several start-ups, focusing on financial inclusion and sustainable development."
     },
     {
-      "theme": "uncertain about career",
-      "story": "Rupa Rege Nitsure, after an uncertain start in banking, rose to become the Chief Economist at **HDFC Bank**. She now leads the bank's strategy on economic research and policy formulation."
+      "theme":"uncertain about career",
+      "story": "Rupa Rege Nitsure, after an uncertain start in banking, rose to become the Chief Economist at \"HDFC Bank\". She now leads the bank's strategy on economic research and policy formulation."
     },
     {
-      "theme": "uncertain about career",
-      "story": "Sangeeta Pradhan, a former corporate lawyer turned finance expert, has worked with global firms like **Goldman Sachs**. She now serves as the CFO for **Tata Consultancy Services (TCS)** and is an advocate for greater representation of women in finance."
-    },
-    {
-      "theme": "returning after break",
-      "story": "Rita Roy, after a break from her professional career, returned to become the managing director of **Edelweiss Financial Services**, where she drove several strategic investments and helped strengthen the company's position in the Indian market."
+      "theme":"uncertain about career",
+      "story": "Sangeeta Pradhan, a former corporate lawyer turned finance expert, has worked with global firms like \"Goldman Sachs\". She now serves as the CFO for \"Tata Consultancy Services (TCS)\" and is an advocate for greater representation of women in finance."
     },
     {
       "theme": "returning after break",
-      "story": "Divya Gokulnath, co-founder of **BYJU's**, took a brief break to focus on family but returned to help build India's largest ed-tech company, revolutionizing the way students access financial education."
+      "story": "Rita Roy, after a break from her professional career, returned to become the managing director of \"Edelweiss Financial Services\", where she drove several strategic investments and helped strengthen the company's position in the Indian market."
+    },
+    {
+      "theme": "returning after break",
+      "story": "Divya Gokulnath, co-founder of \"BYJU's\", took a brief break to focus on family but returned to help build India's largest ed-tech company, revolutionizing the way students access financial education."
     },
     {
       "theme": "feeling isolated",
-      "story": "Meenal Sahay, a senior investment banker, faced isolation early in her career. She now leads **BlackRock**'s strategic investments in India, focusing on bringing more women into leadership roles in finance."
+      "story": "Meenal Sahay, a senior investment banker, faced isolation early in her career. She now leads \"BlackRock\"'s strategic investments in India, focusing on bringing more women into leadership roles in finance."
     },
     {
       "theme": "feeling isolated",
-      "story": "Sadhana Ghosh, a top financial strategist at **HSBC**, overcame early isolation in her career to become a leader in finance, mentoring young women and advocating for their inclusion in financial decision-making roles."
+      "story": "Sadhana Ghosh, a top financial strategist at \"HSBC\", overcame early isolation in her career to become a leader in finance, mentoring young women and advocating for their inclusion in financial decision-making roles."
     },
         {
       "theme": "demotivated",
-      "story": "Ritu Dalmia is a well-known chef and restaurateur who initially faced gender-based challenges in a male-dominated culinary world. Despite the early setbacks, she went on to open **Diva Restaurant** in New Delhi, a highly successful venture. She became one of the first women in India to promote Italian cuisine."
+      "story": "Ritu Dalmia is a well-known chef and restaurateur who initially faced gender-based challenges in a male-dominated culinary world. Despite the early setbacks, she went on to open \"Diva Restaurant\" in New Delhi, a highly successful venture. She became one of the first women in India to promote Italian cuisine."
     },
     {
       "theme": "demotivated",
       "story": "Tarla Dalal, an iconic cookbook author and TV personality, faced challenges as a woman entering the food industry. Despite initial discouragement, she became the first woman to host a cooking show on Indian television, making her a household name. She wrote numerous cookbooks and inspired generations of home cooks."
     },
     {
-      "theme": "uncertain about career",
-      "story": "Vineeta Sharma was initially uncertain about her career but decided to pursue her passion for cooking. She opened **Sattvik Restaurant** in New Delhi, which became a successful venture, known for its creative vegetarian dishes. She went on to become an influential figure in the vegetarian culinary scene."
+      "theme":"uncertain about career",
+      "story": "Vineeta Sharma was initially uncertain about her career but decided to pursue her passion for cooking. She opened \"Sattvik Restaurant\" in New Delhi, which became a successful venture, known for its creative vegetarian dishes. She went on to become an influential figure in the vegetarian culinary scene."
     },
     {
-      "theme": "uncertain about career",
-      "story": "Chef **Shipra Khanna**, winner of **MasterChef India**, faced doubts at the start of her culinary journey. Despite the challenges, she built a successful career as a chef, cookbook author, and culinary consultant, and has become an advocate for women in the food industry."
+      "theme":"uncertain about career",
+      "story": "Chef \"Shipra Khanna\", winner of \"MasterChef India\", faced doubts at the start of her culinary journey. Despite the challenges, she built a successful career as a chef, cookbook author, and culinary consultant, and has become an advocate for women in the food industry."
     },
     {
       "theme": "returning after break",
@@ -410,7 +410,7 @@
     },
     {
       "theme": "returning after break",
-      "story": "Chef **Madhulika Thakkar**, after a brief hiatus, returned to the culinary industry with a focus on health-conscious food. She is now the head chef at **Annalakshmi Restaurant**, a chain known for its vegetarian Indian cuisine, offering both traditional and modern dining experiences."
+      "story": "Chef \"Madhulika Thakkar\", after a brief hiatus, returned to the culinary industry with a focus on health-conscious food. She is now the head chef at \"Annalakshmi Restaurant\", a chain known for its vegetarian Indian cuisine, offering both traditional and modern dining experiences."
     },
     {
       "theme": "feeling isolated",
@@ -418,39 +418,39 @@
     },
     {
       "theme": "feeling isolated",
-      "story": "Chef **Neha Sethi** faced isolation in the competitive food industry but persisted to build a strong reputation as the Executive Chef at **The Leela Palace** in New Delhi. She continues to mentor young women chefs, empowering them to pursue careers in the kitchen."
+      "story": "Chef \"Neha Sethi\" faced isolation in the competitive food industry but persisted to build a strong reputation as the Executive Chef at \"The Leela Palace\" in New Delhi. She continues to mentor young women chefs, empowering them to pursue careers in the kitchen."
     },
     {
       "theme": "demotivated",
-      "story": "Chef **Suman Agarwal**, a health and nutrition expert, faced significant struggles in her career early on. However, she built a successful business around health-focused food, becoming an influential figure in the wellness and food industry with her brand, **Eat Right**."
+      "story": "Chef \"Suman Agarwal\", a health and nutrition expert, faced significant struggles in her career early on. However, she built a successful business around health-focused food, becoming an influential figure in the wellness and food industry with her brand, \"Eat Right\"."
     },
     {
       "theme": "demotivated",
-      "story": "Chef **Radhika Khandelwal** faced demotivation and isolation when she first started out but rose to become a well-known restaurateur. She is the founder of **The Big Chill Café**, a popular chain in Delhi that has earned a loyal following over the years."
+      "story": "Chef \"Radhika Khandelwal\" faced demotivation and isolation when she first started out but rose to become a well-known restaurateur. She is the founder of \"The Big Chill Café\", a popular chain in Delhi that has earned a loyal following over the years."
     },
     {
-      "theme": "uncertain about career",
-      "story": "Pooja Dhingra, a pastry chef and entrepreneur, started out uncertain about her future in the culinary world. She went on to open **Le15 Patisserie**, a patisserie in Mumbai that has gained immense popularity for its high-quality desserts and baked goods. She also runs a baking academy."
+      "theme":"uncertain about career",
+      "story": "Pooja Dhingra, a pastry chef and entrepreneur, started out uncertain about her future in the culinary world. She went on to open \"Le15 Patisserie\", a patisserie in Mumbai that has gained immense popularity for its high-quality desserts and baked goods. She also runs a baking academy."
     },
     {
-      "theme": "uncertain about career",
-      "story": "Chef **Shital Soni** was uncertain about her culinary future, but after winning a place in the finals of **MasterChef India**, she became a successful pastry chef. She now works as a pastry consultant and is recognized for her innovative desserts."
-    },
-    {
-      "theme": "returning after break",
-      "story": "Chef **Sushma Berlia** took a break to focus on her family and later returned to the culinary world. She now leads **Berlia Foods**, a company that produces gourmet food products, and is expanding her operations globally."
+      "theme":"uncertain about career",
+      "story": "Chef \"Shital Soni\" was uncertain about her culinary future, but after winning a place in the finals of \"MasterChef India\", she became a successful pastry chef. She now works as a pastry consultant and is recognized for her innovative desserts."
     },
     {
       "theme": "returning after break",
-      "story": "Chef **Nikita Gandhi** took a break from her culinary career after her marriage but returned to focus on her true passion: food. She now runs a popular food consulting business, helping restaurants and brands with menu development."
+      "story": "Chef \"Sushma Berlia\" took a break to focus on her family and later returned to the culinary world. She now leads \"Berlia Foods\", a company that produces gourmet food products, and is expanding her operations globally."
+    },
+    {
+      "theme": "returning after break",
+      "story": "Chef \"Nikita Gandhi\" took a break from her culinary career after her marriage but returned to focus on her true passion: food. She now runs a popular food consulting business, helping restaurants and brands with menu development."
     },
     {
       "theme": "feeling isolated",
-      "story": "Chef **Madhuri Rathi** faced isolation early in her culinary journey, but now she is the owner of **Madhuri’s Cuisine**, a restaurant chain known for blending traditional Indian flavors with global influences, celebrating diversity in food."
+      "story": "Chef \"Madhuri Rathi\" faced isolation early in her culinary journey, but now she is the owner of \"Madhuri’s Cuisine\", a restaurant chain known for blending traditional Indian flavors with global influences, celebrating diversity in food."
     },
     {
       "theme": "feeling isolated",
-      "story": "Chef **Radhika Sethi** faced isolation in her career, particularly due to gender biases, but overcame them to become the owner of the highly successful **Radhika’s Kitchen** in Delhi, which specializes in Indian and fusion cuisine."
+      "story": "Chef \"Radhika Sethi\" faced isolation in her career, particularly due to gender biases, but overcame them to become the owner of the highly successful \"Radhika’s Kitchen\" in Delhi, which specializes in Indian and fusion cuisine."
     },
       {
     "theme": "feeling isolated",
@@ -461,7 +461,7 @@
     "story": "Mary Kom, a six-time world champion boxer, came from a humble background in Manipur. After being told boxing was not for women, she trained relentlessly and became one of India's most celebrated athletes, showing that determination breaks all barriers."
   },
   {
-    "theme": "uncertain about career",
+    "theme":"uncertain about career",
     "story": "Falguni Nayar left a high-paying job as an investment banker to start Nykaa at age 50. Despite uncertainty, she turned it into a billion-dollar beauty brand, becoming one of India's most successful self-made women entrepreneurs."
   },
   {
@@ -481,7 +481,7 @@
     "story": "Priya Prakash founded HealthSetGo to address childhood obesity and health education in schools. As a young woman entrepreneur in the healthcare space, she often felt isolated but stayed committed to her mission, impacting thousands of students."
   },
   {
-    "theme": "uncertain about career",
+    "theme":"uncertain about career",
     "story": "Ruma Devi, a traditional artisan from Rajasthan, started with self-doubt and no formal education. Today, she leads a collective of 22,000 rural women artisans, earning international awards for empowering grassroots women."
   },
   {
@@ -505,7 +505,7 @@
     "story": "Jyoti Kumari, a 15-year-old girl from Bihar, cycled over 1,200 km during the COVID lockdown carrying her injured father. Her courage caught international attention, and she was praised for her resilience and strength under isolation and pressure."
   },
   {
-    "theme": "uncertain about career",
+    "theme":"uncertain about career",
     "story": "Tilottama Sen, a young Indian shooter, doubted her career when she didn’t make the initial national team. She stayed committed and went on to win medals at international junior championships, showing the importance of persistence."
   },
   {
@@ -525,7 +525,7 @@
     "story": "Saalumarada Thimmakka, now over 110 years old, was once demotivated by not having children. She channeled her energy into planting over 8,000 trees across Karnataka, earning national recognition for her environmental work."
   },
   {
-    "theme": "uncertain about career",
+    "theme":"uncertain about career",
     "story": "Kaamya Karthikeyan, a teenager and mountaineer, faced uncertainty about balancing studies and extreme expeditions. But she pursued both and became the youngest Indian girl to climb Mount Aconcagua in South America."
   },
   {
@@ -537,7 +537,7 @@
     "story": "Sunita Devi, a woman in her 60s from Uttarakhand, resumed farming using organic methods after a long break. Her practices helped revive local farming traditions and inspired women in her village to become self-reliant."
   },
       {
-    "theme": "uncertain about career",
+    "theme":"uncertain about career",
     "story": "Anju Verma, a teenager from Haryana, was unsure about her future but passionate about social change. At 16, she founded Buland Udaan to tackle child marriage and dropout rates, winning national recognition for her work in education."
   },
   {
@@ -553,7 +553,7 @@
     "story": "Sudha Murthy, though primarily known as a philanthropist and author, returned to public work after raising her family. She focused heavily on education through the Infosys Foundation, building thousands of libraries and school facilities across India."
   },
   {
-    "theme": "uncertain about career",
+    "theme":"uncertain about career",
     "story": "Divya Gokulnath co-founded BYJU’S after leaving a teaching job. Initially unsure about building an ed-tech company, she helped scale it into one of India's largest education platforms, empowering millions of students digitally."
   },
   {
@@ -573,7 +573,7 @@
     "story": "Ziya Us Salam, an education journalist and advocate, highlighted many stories of marginalized Muslim girls accessing education. Inspired by their courage, he mentored young women who now run community libraries and education drives."
   },
       {
-    "theme": "uncertain about career",
+    "theme":"uncertain about career",
     "story": "Ruchi Sanghvi, the first female engineer at Facebook, initially doubted her place in the male-dominated tech world. She later co-founded Cove, which was acquired by Dropbox, and became one of the most influential Indian-origin women in Silicon Valley."
   },
   {
@@ -593,7 +593,7 @@
     "story": "Ajita Rattani, a researcher in artificial intelligence and biometrics, faced skepticism early in her tech career. She persisted and became a globally recognized scientist with multiple publications and patents in AI ethics and computer vision."
   },
   {
-    "theme": "uncertain about career",
+    "theme":"uncertain about career",
     "story": "Dr. Gagandeep Kang, a leading virologist and the first Indian woman elected Fellow of the Royal Society, was once unsure if a medical research career in India would lead anywhere. Today, she is a global authority in infectious diseases."
   },
   {

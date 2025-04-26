@@ -227,11 +227,63 @@ function hideTypingIndicator(chatContent) {
   if (typing) typing.remove();
 }
 
+//function to call remote job api from backend
+async function fetchJobListings(jobType) {
+  const chatContent = document.getElementById('chatbox-content');
+
+  showTypingIndicator(chatContent);
+
+  let jobs = [];
+
+  try {
+    const res = await fetch('/remote_jobs'); // This hits your FastAPI backend
+    jobs = await res.json();
+  } catch (error) {
+    console.error('Failed to fetch jobs:', error);
+    hideTypingIndicator(chatContent);
+    const errorBlock = document.createElement('div');
+    errorBlock.className = 'message-container bot-container';
+    errorBlock.innerHTML = `
+      <div class="label">Amny</div>
+      <div class="message bot">Sorry, I couldn’t load jobs right now. Please try again later.</div>
+    `;
+    chatContent.appendChild(errorBlock);
+    return;
+  }
+
+  hideTypingIndicator(chatContent);
+
+  const filteredJobs = jobs
+
+  const jobCards = filteredJobs.slice(0, 5).map(job => `
+    <div class="job-card" style="border:1px solid #eee; border-radius:8px; padding:10px; margin:6px 0;">
+      <strong>${job.title}</strong><br>
+      <span style="font-size: 13px;">${job.company_name} - ${job.location}</span><br>
+      <a href="${job.url}" target="_blank" style="font-size: 13px; color:#007bff;">View Job</a>
+    </div>
+  `).join('');
+
+  const jobBlock = document.createElement('div');
+  jobBlock.className = 'message-container bot-container';
+  jobBlock.innerHTML = `
+    <div class="label">Amny</div>
+    <div class="message bot">
+      ${filteredJobs.length > 0
+        ? `Here are some ${jobType.toLowerCase()} jobs I found for you:`
+        : `I couldn't find any ${jobType.toLowerCase()} jobs at the moment.`}
+      <br>${jobCards}
+    </div>
+  `;
+  chatContent.appendChild(jobBlock);
+  chatContent.scrollTop = chatContent.scrollHeight;
+}
+
 function handleButtonClick(event) {
   const chatContent = document.getElementById('chatbox-content');
   const buttonText = event.target.getAttribute('data-button-text');
-
+  const jobTypes = ["Full-time", "Part-time", "Remote", "All"];
   const buttons = chatContent.querySelectorAll('.quick-reply');
+
   buttons.forEach(button => {
     button.disabled = true;
     button.style.backgroundColor = "#ccc";
@@ -250,12 +302,16 @@ function handleButtonClick(event) {
   chatContent.appendChild(typingBlock);
   chatContent.scrollTop = chatContent.scrollHeight;
 
+  if (jobTypes.includes(buttonText)) {
+    fetchJobListings(buttonText); // This will show jobs for selected type
+    return;
+    }
 
-
+  // Otherwise, default backend call logic for other buttons
   fetch('/get_response_from_button', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message: "",             // Required by FastAPI model
+    body: JSON.stringify({ message: "",             //Required by FastAPI model
                            button: buttonText,
                            session_id: sessionId})
         })

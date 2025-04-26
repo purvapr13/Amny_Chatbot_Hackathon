@@ -1,15 +1,19 @@
-from fastapi import FastAPI, Request
+from typing import List, Optional
+
+from fastapi import FastAPI, Request, Depends
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 from contextlib import asynccontextmanager
+from sqlalchemy.orm import Session
 
 # Local imports
-from db_utils import db_utils
+from db_utils import sess_db_utils
 from model_utils.intent_classification import predict_intent, load_model
 from features import dodging, greet, bye
 from features.faq_rag import load_faq, build_faq_index, query_index, load_demotivated_stories
+from db_utils import job_db_setup, models
 
 ml_models = {}
 
@@ -37,15 +41,19 @@ async def lifespan(app: FastAPI):
     print("✅ Models ready!")
 
     # Establish DB connection
-    conn, cursor = db_utils.create_connection()
+    conn, cursor = sess_db_utils.create_connection()
     app.state.db_conn = conn
     app.state.db_cursor = cursor
-    db_utils.cleanup_old_sessions(conn, cursor)
+    sess_db_utils.cleanup_old_sessions(conn, cursor)
+
+    # 👇 Insert jobs at startup (imported from separate module)
+    from db_utils.populate_remotejobs import insert_remote_jobs
+    insert_remote_jobs()
 
     yield  # Application runs here
 
     # Cleanup
-    db_utils.close_connection(conn)
+    sess_db_utils.close_connection(conn)
     ml_models.clear()
 
 app = FastAPI(lifespan=lifespan)
@@ -63,7 +71,7 @@ async def get_response(req: MessageRequest, request: Request):
     session_id = req.session_id
     conn = request.app.state.db_conn
     cursor = request.app.state.db_cursor
-    session_data = db_utils.get_session(conn, cursor, session_id)
+    session_data = sess_db_utils.get_session(conn, cursor, session_id)
     session_data.append({"from": "user", "text": message})
 
     intent, confidence = predict_intent(message)
@@ -98,7 +106,7 @@ async def get_response(req: MessageRequest, request: Request):
 
     # ✅ Trim session data to last 10 messages
     session_data = session_data[-10:]
-    db_utils.save_session(conn, cursor, session_id, session_data)
+    sess_db_utils.save_session(conn, cursor, session_id, session_data)
 
     return {
         "intent": intent,
@@ -121,7 +129,7 @@ async def get_response_from_button(req: MessageRequest, request: Request):
     button_clicked = req.button
     conn = request.app.state.db_conn
     cursor = request.app.state.db_cursor
-    session_data = db_utils.get_session(conn, cursor, session_id)
+    session_data = sess_db_utils.get_session(conn, cursor, session_id)
     session_data.append({"from": "user", "text": f"[button: {button_clicked}]"})
     response = None
 
@@ -151,19 +159,47 @@ async def get_response_from_button(req: MessageRequest, request: Request):
 
     # ✅ Trim session data to last 10 messages
     session_data = session_data[-10:]
-    db_utils.save_session(conn, cursor, session_id, session_data)
+    sess_db_utils.save_session(conn, cursor, session_id, session_data)
 
     return response_data
 
 
-class JobSearchOptionsResponse(BaseModel):
-    options: list[str]
+# Define the response model (Pydantic schema) for Job
+class JobSchema(BaseModel):
+    id: int
+    title: str
+    company_name: str
+    location: str
+    category: str
+    tags: List[str]
+    url: str
+    description: str
+    published_at: str
+    source: str
+    employment_type: Optional[str] = ""
+    experience_level: Optional[str] = ""
+
+    class Config:
+        orm_mode = True
 
 
-@app.post("/get_job_search_options")
-async def get_job_search_options():
-    job_search_options = ["Full-time", "Part-time", "Remote", "All"]
-    return JobSearchOptionsResponse(options=job_search_options)
+# Dependency to get the database session
+def get_db():
+    db = job_db_setup.SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+
+# Route to fetch jobs from the database
+@app.get("/remote_jobs", response_model=List[JobSchema])
+async def get_remote_jobs(db: Session = Depends(get_db)):
+    jobs = db.query(models.Job).all()  # Fetch all jobs from the Job
+    print(f"Fetched {len(jobs)} jobs from DB")
+    for job in jobs:
+        job.tags = job.get_tags()
+    return jobs
 
 if __name__ == "__main__":
     import uvicorn
