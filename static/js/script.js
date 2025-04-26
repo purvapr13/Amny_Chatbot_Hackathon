@@ -112,6 +112,14 @@ if (window.visualViewport) {
 
 let privacyNoticeVisible = true;
 let feedbackShown = false;
+let sessionId = localStorage.getItem('session_id') || generateSessionId();
+localStorage.setItem('session_id', sessionId);
+
+
+function generateSessionId() {
+  return 'session-' + Math.random().toString(36).substring(2, 15);
+}
+
 
 async function sendMessage() {
   const input = document.getElementById('user-input');
@@ -134,8 +142,9 @@ async function sendMessage() {
   const response = await fetch('/get_response', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message: userText })
-  });
+    body: JSON.stringify({ message: userText,
+                           session_id: sessionId})
+    });
 
   const data = await response.json();
   const botText = data.response || "I'm here to empower you 💫";
@@ -210,7 +219,8 @@ function handleButtonClick(event) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ message: "",             // Required by FastAPI model
-                           button: buttonText })
+                           button: buttonText,
+                           session_id: sessionId})
         })
     .then(response => response.json())
     .then(data => {
@@ -385,6 +395,9 @@ function signOut() {
     document.getElementById("google-signout-btn").style.display = "none";  // Hide the sign-out button
 
     console.log("User signed out.");
+
+    localStorage.removeItem('chatbot_session_id');
+    sessionId = generateSessionId(); // Reset for future sessions
   });
 }
 
