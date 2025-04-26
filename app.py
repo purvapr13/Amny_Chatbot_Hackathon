@@ -82,10 +82,22 @@ async def get_response(req: MessageRequest, request: Request):
     elif intent == "demotivated":
         result = query_index(ml_models["index"], message, is_faq=False)
         response = result["matched_text"]
+    elif intent == "job_search":
+        response = "I can help you search for jobs! What type of job are you looking for?"
+        show_buttons = True
+    elif intent == "mentorship":
+        response = "Together, we’re unstoppable. Let’s make it happen! 💥"
+        show_buttons = True
+    elif intent == "events" or "sessions":
+        response = "Would you like to take the next step in your journey with a session or community event?"
+        show_buttons = True
     else:
         response = f"I understood that as **{intent.replace('_', ' ').title()}**."
 
     session_data.append({"from": "bot", "text": response})
+
+    # ✅ Trim session data to last 10 messages
+    session_data = session_data[-10:]
     db_utils.save_session(conn, cursor, session_id, session_data)
 
     return {
@@ -111,21 +123,47 @@ async def get_response_from_button(req: MessageRequest, request: Request):
     cursor = request.app.state.db_cursor
     session_data = db_utils.get_session(conn, cursor, session_id)
     session_data.append({"from": "user", "text": f"[button: {button_clicked}]"})
+    response = None
 
     if button_clicked == "Job Search":
-        response = "I can help you search for jobs! What type of job are you looking for?"
+        msg = "I can help you search for jobs! What type of job are you looking for?"
+        job_types = ["Full-time", "Part-time", "Remote", "All"]
+        response_data = {
+            "response": msg,
+            "buttons": job_types  # send the data to frontend for rendering buttons
+        }
     elif button_clicked == "Mentoring":
         response = "Together, we’re unstoppable. Let’s make it happen! 💥"
+        response_data = {"response": response}
     elif button_clicked == "Community events":
         response = "Your energy, your ideas—our community thrives because of YOU! 🌟"
+        response_data = {"response": response}
     else:
         intent, _ = predict_intent(message)
         response = f"I understood that as **{intent.replace('_', ' ').title()}**."
+        response_data = {"response": response}
+
+    # If response is None (in any case), set a default message
+    if response is None:
+        response = "I didn't quite get that. Could you try again?"
 
     session_data.append({"from": "bot", "text": response})
+
+    # ✅ Trim session data to last 10 messages
+    session_data = session_data[-10:]
     db_utils.save_session(conn, cursor, session_id, session_data)
 
-    return {"response": response}
+    return response_data
+
+
+class JobSearchOptionsResponse(BaseModel):
+    options: list[str]
+
+
+@app.post("/get_job_search_options")
+async def get_job_search_options():
+    job_search_options = ["Full-time", "Part-time", "Remote", "All"]
+    return JobSearchOptionsResponse(options=job_search_options)
 
 if __name__ == "__main__":
     import uvicorn

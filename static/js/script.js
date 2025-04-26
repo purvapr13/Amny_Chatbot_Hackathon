@@ -150,14 +150,56 @@ async function sendMessage() {
     <div class="message bot">${botText}</div>
   `;
 
+  // Render buttons based on intent or backend response
   if (data.show_buttons) {
-    const buttonsHTML = `
-      <div class="buttons-container">
-        <button class="quick-reply" data-button-text="Job Search" onclick="handleButtonClick(event)">Job Search</button>
-        <button class="quick-reply" data-button-text="Mentoring" onclick="handleButtonClick(event)">Mentoring</button>
-        <button class="quick-reply" data-button-text="Community events" onclick="handleButtonClick(event)">Community events</button>
-      </div>
-    `;
+    let buttonsHTML = '';
+
+    if (data.intent === "job_search") {
+      // Render job search specific buttons
+      const jobTypes = ["Full-time", "Part-time", "Remote", "All"];
+      buttonsHTML = `
+        <div class="buttons-container">
+          ${jobTypes.map(jobType => `
+            <button class="quick-reply" data-button-text="${jobType}" onclick="handleButtonClick(event)">
+              ${jobType}
+            </button>
+          `).join('')}
+        </div>
+      `;
+    } else if (data.intent === "mentorship") {
+      // Render mentoring related buttons
+      buttonsHTML = `
+        <div class="buttons-container">
+          <button class="quick-reply" data-button-text="Find a Mentor" onclick="handleButtonClick(event)">
+            Sign Up for Mentoring
+          </button>
+          <button class="quick-reply" data-button-text="Mentoring sessions" onclick="handleButtonClick(event)">
+            Learn More About Mentoring
+          </button>
+        </div>
+      `;
+    } else if (data.intent === "sessions" || data.intent === 'events') {
+      // Render community events related buttons
+      buttonsHTML = `
+        <div class="buttons-container">
+          <button class="quick-reply" data-button-text="View Upcoming Events" onclick="handleButtonClick(event)">
+            View Upcoming Events
+          </button>
+          <button class="quick-reply" data-button-text="Join a Community Event" onclick="handleButtonClick(event)">
+            Join a Community Event
+          </button>
+        </div>
+      `;
+    } else {
+      // Default or fallback buttons (for other intents)
+      buttonsHTML = `
+        <div class="buttons-container">
+          <button class="quick-reply" data-button-text="Job Search" onclick="handleButtonClick(event)">Job Search</button>
+          <button class="quick-reply" data-button-text="Mentoring" onclick="handleButtonClick(event)">Mentoring</button>
+          <button class="quick-reply" data-button-text="Community events" onclick="handleButtonClick(event)">Community events</button>
+        </div>
+      `;
+    }
     botBlock.innerHTML += buttonsHTML;
   }
 
@@ -208,6 +250,8 @@ function handleButtonClick(event) {
   chatContent.appendChild(typingBlock);
   chatContent.scrollTop = chatContent.scrollHeight;
 
+
+
   fetch('/get_response_from_button', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -228,6 +272,16 @@ function handleButtonClick(event) {
         <div class="label">Amny</div>
         <div class="message bot">${botText}</div>
       `;
+
+      // If the response includes buttons, render them
+      if (data.buttons && data.buttons.length > 0) {
+        const buttonsHTML = data.buttons.map(button => `
+          <button class="quick-reply" data-button-text="${button}" onclick="handleButtonClick(event)">${button}</button>
+        `).join('');
+
+        botBlock.innerHTML += `<div class="buttons-container">${buttonsHTML}</div>`;
+      }
+
       chatContent.appendChild(botBlock);
       chatContent.scrollTop = chatContent.scrollHeight;
       addFeedbackUI(chatContent);
@@ -283,9 +337,6 @@ window.onload = () => {
     ux_mode: "popup"
   });
 
-  // document.getElementById("google-signin-btn").addEventListener("click", () => {
-  //   google.accounts.id.prompt(); // triggers the popup
-  // });
 };
 function notInterestedAction() {
   console.log("User clicked 'Not Interested'");
