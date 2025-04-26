@@ -1,9 +1,11 @@
+// Function to toggle the chatbox visibility
 function toggleChatbox(event) {
   const chatbox = document.getElementById('chatbox');
   const chatboxContent = document.getElementById('chatbox-content');
   const chatButton = document.getElementById('chatbot-btn');
   const isVisible = window.getComputedStyle(chatbox).display === 'flex';
 
+  // Show chatbox
   if (!isVisible) {
     chatbox.style.display = 'flex';
     if (window.innerWidth <= 768) chatButton.classList.add('mobile-hidden');
@@ -15,6 +17,7 @@ function toggleChatbox(event) {
       chatbox.style.height = `${Math.floor(visualHeight * 0.7)}px`;
     }
 
+    // Show privacy notice if not already shown
     if (!document.getElementById('privacy-notice-block')) {
       const noticeBlock = document.createElement('div');
       noticeBlock.className = 'message-container bot-container';
@@ -40,10 +43,13 @@ function toggleChatbox(event) {
     chatbox.style.display = 'none';
     chatButton.classList.remove('mobile-hidden');
   }
+
+  // Update chatbox height
   updateChatboxHeight();
   event.stopPropagation();
 }
 
+// Close the chatbox if user clicks outside
 document.addEventListener('click', function (event) {
   const chatbox = document.getElementById('chatbox');
   const chatButton = document.getElementById('chatbot-btn');
@@ -53,10 +59,12 @@ document.addEventListener('click', function (event) {
   }
 });
 
+// Prevent clicks inside the chatbox from closing it
 document.getElementById('chatbox').addEventListener('click', function (event) {
   event.stopPropagation();
 });
 
+// Add event listener for the 'Enter' key to send messages
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('user-input');
   input.addEventListener('keypress', function (e) {
@@ -97,6 +105,14 @@ if (window.visualViewport) {
 
 let privacyNoticeVisible = true;
 let feedbackShown = false;
+let sessionId = localStorage.getItem('session_id') || generateSessionId();
+localStorage.setItem('session_id', sessionId);
+
+
+function generateSessionId() {
+  return 'session-' + Math.random().toString(36).substring(2, 15);
+}
+
 
 async function sendMessage() {
   const input = document.getElementById('user-input');
@@ -119,8 +135,9 @@ async function sendMessage() {
   const response = await fetch('/get_response', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message: userText })
-  });
+    body: JSON.stringify({ message: userText,
+                           session_id: sessionId})
+    });
 
   const data = await response.json();
   const botText = data.response || "I'm here to empower you 💫";
@@ -195,7 +212,8 @@ function handleButtonClick(event) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ message: "",             // Required by FastAPI model
-                           button: buttonText })
+                           button: buttonText,
+                           session_id: sessionId})
         })
     .then(response => response.json())
     .then(data => {
@@ -292,7 +310,7 @@ function handleCredentialResponse(response) {
   console.log("Encoded JWT ID token: " + response.credential);
 
   const payload = parseJwt(response.credential);
-  console.log("User Info:", payload);  
+  console.log("User Info:", payload);
 
   storeToken(response.credential);
 
@@ -340,7 +358,7 @@ function showChatbot(token = null) {
   } else {
     console.log("Guest mode chatbot");
   }
-}     
+}
 
 
 
@@ -352,11 +370,11 @@ function getCookie(name) {
 }
 
 const token = getCookie("jwt_token");
-console.log("JWT Token:", token);  
+console.log("JWT Token:", token);
 
-function storeToken(token) {   
+function storeToken(token) {
   console.log(token);
-  document.cookie = `jwt_token=${token}; path=/; HttpOnly; Secure; SameSite=Strict`; 
+  document.cookie = `jwt_token=${token}; path=/; HttpOnly; Secure; SameSite=Strict`;
   localStorage.setItem('jwt_token', token);
 }
 
@@ -371,17 +389,17 @@ function saveChatHistory(userMessage, botResponse) {
 function loadChatHistory() {
   const storedHistory = localStorage.getItem('chatHistory');
   return storedHistory ? JSON.parse(storedHistory) : [];
-}   
+}
 
 const tokens = localStorage.getItem('jwt_token');
-console.log("JWT Token:", tokens);  
+console.log("JWT Token:", tokens);
 
 const chatHistory = localStorage.getItem('chatHistory');
-console.log("Chat History:", chatHistory);  
+console.log("Chat History:", chatHistory);
 
 function signOut() {
-  document.cookie = "jwt_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; Secure; HttpOnly; SameSite=Strict"; 
-  console.log("User signed out.,token removed"); 
+  document.cookie = "jwt_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; Secure; HttpOnly; SameSite=Strict";
+  console.log("User signed out.,token removed");
   localStorage.removeItem('jwt_token');
   localStorage.removeItem('chatHistory');
   const logoutBtn = document.getElementById("logout-btn");
@@ -391,5 +409,5 @@ function signOut() {
   if (googleSignoutBtn) googleSignoutBtn.style.display = "none";
   const authBox = document.getElementById("auth-box");
   if (authBox) authBox.style.display = "block";
-  
+
 }

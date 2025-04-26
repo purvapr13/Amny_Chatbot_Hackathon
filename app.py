@@ -12,6 +12,9 @@ from features import dodging, greet, bye
 from features.faq_rag import load_faq, build_faq_index, \
     query_index, load_demotivated_stories
 
+from typing import Dict
+session_store: Dict[str, list] = {}
+
 ml_models = {}
 
 
@@ -42,6 +45,7 @@ templates = Jinja2Templates(directory="templates")
 class MessageRequest(BaseModel):
     message: str
     button: str | None = None
+    session_id: str | None = None
 
 
 class FeedbackRequest(BaseModel):
@@ -60,6 +64,13 @@ async def index(request: Request):
 @app.post("/get_response")
 async def get_response(req: MessageRequest):
     message = req.message.strip()
+    session_id = req.session_id
+    if session_id and session_id not in session_store:
+        session_store[session_id] = []
+
+    if session_id:
+        session_store[session_id].append({"from": "user", "text": message})
+
     intent, confidence = predict_intent(message)
     show_buttons = None
 
@@ -79,6 +90,10 @@ async def get_response(req: MessageRequest):
     else:
         response = f"I understood that as **{intent.replace('_', ' ').title()}**."
 
+    # Store bot response
+    if session_id:
+        session_store[session_id].append({"from": "bot", "text": response})
+
     return {
         "intent": intent,
         "confidence": round(confidence, 2),
@@ -96,8 +111,14 @@ def submit_feedback(feedback_req: FeedbackRequest):
 @app.post("/get_response_from_button")
 async def get_response_from_button(req: MessageRequest):
     message = req.message.strip()
+    session_id = req.session_id
     button_clicked = req.button
-    response = None
+
+    if session_id and session_id not in session_store:
+        session_store[session_id] = []
+
+    if session_id:
+        session_store[session_id].append({"from": "user", "text": f"[button: {button_clicked}]"})
 
     if button_clicked == "Job Search":
         response = "I can help you search for jobs! What type of job are you looking for?"
@@ -109,9 +130,14 @@ async def get_response_from_button(req: MessageRequest):
         intent, _ = predict_intent(message)
         response = f"I understood that as **{intent.replace('_', ' ').title()}**."
 
+    if session_id:
+        session_store[session_id].append({"from": "bot", "text": response})
+
+    print(session_store, "storing sessionssss")
+
     return {"response": response}
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, port=8000)
+    uvicorn.run(app, port=5000)
 
