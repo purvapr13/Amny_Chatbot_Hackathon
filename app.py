@@ -32,11 +32,14 @@ def create_connection():
     """Create and return SQLite connection and cursor."""
     conn = sqlite3.connect(DB_PATH, check_same_thread=False)
     cursor = conn.cursor()
-
-    # Create sessions table if not exists
-    cursor.execute('''CREATE TABLE IF NOT EXISTS sessions
-                      (session_id TEXT PRIMARY KEY, session_data TEXT)''')
-    conn.commit()
+    cursor.execute("PRAGMA journal_mode=WAL;")
+    try:
+        # Create sessions table if not exists
+        cursor.execute('''CREATE TABLE IF NOT EXISTS sessions
+                          (session_id TEXT PRIMARY KEY, session_data TEXT)''')
+        conn.commit()
+    except sqlite3.Error as e:
+        print(f"DB error: {e}")
     return conn, cursor
 
 
@@ -83,8 +86,11 @@ def get_session(conn, cursor, session_id: str):
 
 def save_session(conn, cursor, session_id: str, session_data: list):
     """Save the session data to SQLite."""
-    cursor.execute("REPLACE INTO sessions (session_id, session_data) VALUES (?, ?)",
-                   (session_id, json.dumps(session_data)))
+    cursor.execute("""
+        INSERT INTO sessions (session_id, session_data)
+        VALUES (?, ?)
+        ON CONFLICT(session_id) DO UPDATE SET session_data = excluded.session_data
+        """, (session_id, json.dumps(session_data)))
     conn.commit()
 
 
