@@ -71,10 +71,10 @@ async def get_response(req: MessageRequest):
     elif intent == "bye":
         response = bye.get_random_bye_response()
     elif intent == "faq":
-        result = query_index(embeddings_index, user_input, is_faq=True)
+        result = query_index(ml_models['index'], message, is_faq=True)
         response = result["matched_text"]
     elif intent == "demotivated":
-        result = query_index(embeddings_index, user_input, is_faq=False)
+        result = query_index(ml_models['index'], message, is_faq=False)
         response = result["matched_text"]
     else:
         response = f"I understood that as **{intent.replace('_', ' ').title()}**."
@@ -113,5 +113,5 @@ async def get_response_from_button(req: MessageRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, port=5000)
+    uvicorn.run(app, port=8000)
 
