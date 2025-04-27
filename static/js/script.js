@@ -321,6 +321,7 @@ function handleButtonClick(event) {
       if (typing) typing.remove();
 
       const botText = data.response || "I'm here to empower you 💫";
+      hideTypingIndicator(chatContent);
 
       const botBlock = document.createElement('div');
       botBlock.className = 'message-container bot-container';
