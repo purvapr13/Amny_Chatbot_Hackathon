@@ -420,29 +420,92 @@ async function fetchJobsBasedOnCriteria(criteria) {
   }
 }
 
+// function displayJobListings(jobs) {
+//   const chatContent = document.getElementById('chatbox-content');
+//   let jobCardsHTML = jobs.slice(0, 5).map(job =>
+//     `<div class="job-card" style="border:1px solid #eee; border-radius:8px; padding:10px; margin:6px 0;">
+//       <strong><span class="math-inline">\{job\.title \|\| 'No Title'\}</strong\><br\>
+// <span style\="font\-size\: 13px;"\></span>{job.company || 'Unknown Company'} - ${job.location || 'Unknown Location'}</span><br>
+//       ${job.url ? `<a href="${job.url}" target="_blank" style="font-size: 13px; color:#007bff;">View Job</a>` : 'No link available'}
+//     </div>`
+//   ).join(''); 
+//   const botBlock = document.createElement('div');
+//   botBlock.className = 'message-container bot-container';
+//   botBlock.innerHTML = `
+//     <div class="label">Amny</div>
+//     <div class="message bot">
+//       Here are some jobs that match your criteria:
+//       <br>${jobCardsHTML}
+//       ${jobs.length > 5 ? '<button onclick="displayMoreJobs()">Show More</button>' : ''}
+//     </div>
+//   `;
+//   chatContent.appendChild(botBlock);
+//   chatContent.scrollTop = chatContent.scrollHeight;
+//   currentJobIndex = 5;
+//   allFetchedJobs = jobs;
+// }
+
+// Show the first batch of 3 jobs
+
 function displayJobListings(jobs) {
+  // store and reset
+  allFetchedJobs = jobs;
+  currentJobIndex = 0;
+
+  if (jobs.length === 0) {
+    appendMessage('bot','Amny','Sorry, no jobs available.');
+    return;
+  }
+  renderNextBatch();
+}
+
+function renderNextBatch() {
   const chatContent = document.getElementById('chatbox-content');
-  let jobCardsHTML = jobs.slice(0, 5).map(job =>
-    `<div class="job-card" style="border:1px solid #eee; border-radius:8px; padding:10px; margin:6px 0;">
-      <strong><span class="math-inline">\{job\.title \|\| 'No Title'\}</strong\><br\>
-<span style\="font\-size\: 13px;"\></span>{job.company || 'Unknown Company'} - ${job.location || 'Unknown Location'}</span><br>
-      ${job.url ? `<a href="${job.url}" target="_blank" style="font-size: 13px; color:#007bff;">View Job</a>` : 'No link available'}
-    </div>`
-  ).join(''); 
+  const sliceStart = currentJobIndex;
+  const sliceEnd = sliceStart + 3;
+  const batch = allFetchedJobs.slice(sliceStart, sliceEnd);
+  if (batch.length === 0) {
+    appendMessage('bot','Amny','No more jobs available.');
+    return;
+  }
+
+  // build cards HTML
+  const cardsHTML = batch.map(job => `
+    <div class="job-card" style="border:1px solid #eee; border-radius:8px; padding:10px; margin:6px 0;">
+      <strong>${job.job_title || 'No Title'}</strong><br>
+      <small>${job.employer_name || 'Unknown Company'} — ${job.job_city || ''}, ${job.job_country || ''}</small><br>
+      ${job.job_apply_link
+        ? `<a href="${job.job_apply_link}" target="_blank" style="font-size:13px;color:#007bff;">View Job</a>`
+        : 'No link available'}
+    </div>
+  `).join('');
+
+  // show “Show More” if there are more left
+  const moreBtnHTML = (sliceEnd < allFetchedJobs.length)
+    ? '<button id="show-more-btn" style="margin-top:8px;">Show More</button>'
+    : '';
+
+  // append to chat
   const botBlock = document.createElement('div');
   botBlock.className = 'message-container bot-container';
   botBlock.innerHTML = `
     <div class="label">Amny</div>
     <div class="message bot">
-      Here are some jobs that match your criteria:
-      <br>${jobCardsHTML}
-      ${jobs.length > 5 ? '<button onclick="displayMoreJobs()">Show More</button>' : ''}
+      Here are some jobs that match your criteria:<br>${cardsHTML}${moreBtnHTML}
     </div>
   `;
   chatContent.appendChild(botBlock);
   chatContent.scrollTop = chatContent.scrollHeight;
-  currentJobIndex = 5;
-  allFetchedJobs = jobs;
+
+  // advance index
+  currentJobIndex = sliceEnd;
+
+  // wire up the button
+  const btn = document.getElementById('show-more-btn');
+  if (btn) {
+    btn.addEventListener('click', renderNextBatch);
+  }  
+  
 }
 
 function displayMoreJobs() {
