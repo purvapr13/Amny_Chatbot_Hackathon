@@ -1,12 +1,13 @@
 from typing import List, Optional
 
 from fastapi import FastAPI, Request, Depends
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 from contextlib import asynccontextmanager
 from sqlalchemy.orm import Session
+import httpx  # For making asynchronous HTTP requests
 
 # Local imports
 from db_utils import sess_db_utils
@@ -16,7 +17,6 @@ from features.faq_rag import load_faq, build_faq_index, query_index, load_demoti
 from db_utils import job_db_setup, models
 
 ml_models = {}
-
 
 templates = Jinja2Templates(directory="templates")
 
@@ -29,6 +29,24 @@ class MessageRequest(BaseModel):
 
 class FeedbackRequest(BaseModel):
     feedback: int
+
+
+class JobSchema(BaseModel):
+    id: int
+    title: str
+    company_name: str
+    location: str
+    category: str
+    tags: List[str]
+    url: str
+    description: str
+    published_at: str
+    source: str
+    employment_type: Optional[str] = ""
+    experience_level: Optional[str] = ""
+
+    class Config:
+        orm_mode = True
 
 
 @asynccontextmanager
@@ -96,7 +114,7 @@ async def get_response(req: MessageRequest, request: Request):
     elif intent == "mentorship":
         response = "Together, we’re unstoppable. Let’s make it happen! 💥"
         show_buttons = True
-    elif intent == "events" or "sessions":
+    elif intent == "events" or intent == "sessions":  # Corrected logic
         response = "Would you like to take the next step in your journey with a session or community event?"
         show_buttons = True
     else:
@@ -124,63 +142,32 @@ def submit_feedback(feedback_req: FeedbackRequest):
 
 @app.post("/get_response_from_button")
 async def get_response_from_button(req: MessageRequest, request: Request):
-    message = req.message.strip()
-    session_id = req.session_id
     button_clicked = req.button
-    conn = request.app.state.db_conn
-    cursor = request.app.state.db_cursor
-    session_data = sess_db_utils.get_session(conn, cursor, session_id)
-    session_data.append({"from": "user", "text": f"[button: {button_clicked}]"})
-    response = None
+    response_data = {}
 
     if button_clicked == "Job Search":
-        msg = "I can help you search for jobs! What type of job are you looking for?"
-        job_types = ["Full-time", "Part-time", "Remote", "All"]
-        response_data = {
-            "response": msg,
-            "buttons": job_types  # send the data to frontend for rendering buttons
-        }
+        msg = "Great! Please tell me your skills and how many years of experience you have?"
+        response_data = {"response": msg}
     elif button_clicked == "Mentoring":
         response = "Together, we’re unstoppable. Let’s make it happen! 💥"
         response_data = {"response": response}
     elif button_clicked == "Community events":
         response = "Your energy, your ideas—our community thrives because of YOU! 🌟"
         response_data = {"response": response}
+    elif button_clicked in ["Full-time", "Part-time", "Remote", "All"]:
+        response_data = {"response": f"Okay, you selected '{button_clicked}'. Now, please enter your skills."}
     else:
-        intent, _ = predict_intent(message)
-        response = f"I understood that as **{intent.replace('_', ' ').title()}**."
-        response_data = {"response": response}
+        response_data = {"response": "I didn't quite get that. Could you try again?"}
 
-    # If response is None (in any case), set a default message
-    if response is None:
-        response = "I didn't quite get that. Could you try again?"
-
-    session_data.append({"from": "bot", "text": response})
-
-    # ✅ Trim session data to last 10 messages
+    session_id = req.session_id
+    conn = request.app.state.db_conn
+    cursor = request.app.state.db_cursor
+    session_data = sess_db_utils.get_session(conn, cursor, session_id)
+    session_data.append({"from": "bot", "text": response_data.get("response", "")})
     session_data = session_data[-10:]
     sess_db_utils.save_session(conn, cursor, session_id, session_data)
 
     return response_data
-
-
-# Define the response model (Pydantic schema) for Job
-class JobSchema(BaseModel):
-    id: int
-    title: str
-    company_name: str
-    location: str
-    category: str
-    tags: List[str]
-    url: str
-    description: str
-    published_at: str
-    source: str
-    employment_type: Optional[str] = ""
-    experience_level: Optional[str] = ""
-
-    class Config:
-        orm_mode = True
 
 
 # Dependency to get the database session
@@ -192,14 +179,61 @@ def get_db():
         db.close()
 
 
-# Route to fetch jobs from the database
+# Route to fetch jobs from the database (you might not need this if you're primarily using the RapidAPI)
 @app.get("/remote_jobs", response_model=List[JobSchema])
 async def get_remote_jobs(db: Session = Depends(get_db)):
-    jobs = db.query(models.Job).all()  # Fetch all jobs from the Job
+    jobs = db.query(models.Job).all()
     print(f"Fetched {len(jobs)} jobs from DB")
     for job in jobs:
         job.tags = job.get_tags()
     return jobs
+
+
+RAPIDAPI_KEY = '080a1d30fdmsh54528a6131eb341p14a6adjsnbef0b03a79b2',
+RAPIDAPI_HOST = 'jsearch.p.rapidapi.com'
+
+
+async def fetch_jobs_from_rapidapi(skill: str, experience: str, job_type: str = "FULLTIME", page: int = 1):
+    url = "https://jsearch.p.rapidapi.com/search"
+    querystring = {
+        "query": f"{skill} in India",  # Include "in India" in the query
+        "page": str(page),
+        "num_pages": "1",
+        "employment_types": job_type,
+        "country": "in"  # Specify India using the ISO 3166-1 alpha-2 code
+    }
+    headers = {
+        "X-RapidAPI-Key": RAPIDAPI_KEY,
+        "X-RapidAPI-Host": RAPIDAPI_HOST
+    }
+    async with httpx.AsyncClient() as client:
+        try:
+            response = await client.get(url, headers=headers, params=querystring)
+            response.raise_for_status()  # Raise an exception for HTTP errors
+            data = response.json()
+            jobs = data.get('data', [])
+            print(f"Fetched {len(jobs)} jobs from RapidAPI with query: '{querystring}', page: {page}")
+            return jobs
+        except httpx.HTTPError as e:
+            print(f"HTTP error fetching jobs: {e}")
+            return []
+        except Exception as e:
+            print(f"An error occurred while fetching jobs: {e}")
+            return []
+
+@app.post('/search_jobs')
+async def search_jobs(request: Request):
+    data = await request.json()
+    skill = data.get('skills')
+    experience = data.get('experience')
+    job_type = data.get('jobType', "FULLTIME")  # Default to FULLTIME if not provided
+
+    if not skill or not experience:
+        return JSONResponse(status_code=400, content={"message": "Please provide skills and experience."})
+
+    jobs = await fetch_jobs_from_rapidapi(skill, experience, job_type)
+    return JSONResponse(content={"jobs": jobs})
+
 
 if __name__ == "__main__":
     import uvicorn
