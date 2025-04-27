@@ -8,7 +8,9 @@ from pydantic import BaseModel
 from contextlib import asynccontextmanager
 from sqlalchemy.orm import Session
 import httpx  # For making asynchronous HTTP requests
-
+# Load environment variables (optionally via .env)
+# from dotenv import load_dotenv
+# load_dotenv()
 # Local imports
 from db_utils import sess_db_utils
 from model_utils.intent_classification import predict_intent, load_model
@@ -189,51 +191,52 @@ async def get_remote_jobs(db: Session = Depends(get_db)):
     return jobs
 
 
-RAPIDAPI_KEY = '080a1d30fdmsh54528a6131eb341p14a6adjsnbef0b03a79b2',
-RAPIDAPI_HOST = 'jsearch.p.rapidapi.com'
-
+# RAPIDAPI_KEY = '080a1d30fdmsh54528a6131eb341p14a6adjsnbef0b03a79b2'
+# RAPIDAPI_HOST = 'jsearch.p.rapidapi.com' 
+# Read RapidAPI credentials from environment
+RAPIDAPI_KEY = os.getenv('RAPIDAPI_KEY')
+RAPIDAPI_HOST = os.getenv('RAPIDAPI_HOST') or 'jsearch.p.rapidapi.com'
 
 async def fetch_jobs_from_rapidapi(skill: str, experience: str, job_type: str = "FULLTIME", page: int = 1):
     url = "https://jsearch.p.rapidapi.com/search"
-    querystring = {
-        "query": f"{skill} in India",  # Include "in India" in the query
-        "page": str(page),
-        "num_pages": "1",
-        "employment_types": job_type,
-        "country": "in"  # Specify India using the ISO 3166-1 alpha-2 code
+    params = {
+        "query": skill,
+        "country":"IN"
     }
     headers = {
         "X-RapidAPI-Key": RAPIDAPI_KEY,
         "X-RapidAPI-Host": RAPIDAPI_HOST
     }
+
+    # Debug logging
+    print("→ GET", url)
+    print("   params:", params)
+    print("   headers:", headers)
+
     async with httpx.AsyncClient() as client:
         try:
-            response = await client.get(url, headers=headers, params=querystring)
-            response.raise_for_status()  # Raise an exception for HTTP errors
-            data = response.json()
-            jobs = data.get('data', [])
-            print(f"Fetched {len(jobs)} jobs from RapidAPI with query: '{querystring}', page: {page}")
-            return jobs
-        except httpx.HTTPError as e:
-            print(f"HTTP error fetching jobs: {e}")
-            return []
+            r = await client.get(url, params=params, headers=headers)
+            print("← status", r.status_code)
+            print("← url   ", r.url)
+            r.raise_for_status()
+            return r.json().get("data", [])
         except Exception as e:
-            print(f"An error occurred while fetching jobs: {e}")
+            print("‼️ fetch failed:", e)
             return []
+
 
 @app.post('/search_jobs')
 async def search_jobs(request: Request):
-    data = await request.json()
-    skill = data.get('skills')
-    experience = data.get('experience')
-    job_type = data.get('jobType', "FULLTIME")  # Default to FULLTIME if not provided
+    body = await request.json()
+    skill = body.get('skills')
+    experience = body.get('experience')
+    job_type = body.get('jobType', 'FULLTIME')
 
     if not skill or not experience:
         return JSONResponse(status_code=400, content={"message": "Please provide skills and experience."})
 
     jobs = await fetch_jobs_from_rapidapi(skill, experience, job_type)
-    return JSONResponse(content={"jobs": jobs})
-
+    return JSONResponse(status_code=200, content={"jobs": jobs})
 
 if __name__ == "__main__":
     import uvicorn
