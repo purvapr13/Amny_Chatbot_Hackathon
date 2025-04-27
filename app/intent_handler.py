@@ -29,6 +29,14 @@ def handle_intent(intent: str, message: str, ml_models: dict):
     elif intent == "events" or intent == "sessions":
         response = "Would you like to take the next step in your journey with a session or community event?"
         show_buttons = True
+    elif intent == "contact":
+        response = "I am sorry that I couldn't help you. Here's you can contact jobsforHer foundation herkey@gmail.com"
+        show_buttons = False
+    elif intent == "others" or intent == "fallback":
+        response = "I dont know what you're referring to, could you please rephrase?"
+        show_buttons = False
+    elif intent == "resume_help":
+        response = "surely, I can give you some resume creation tips and tricks."
     else:
         response = f"I understood that as **{intent.replace('_', ' ').title()}**."
 
