@@ -327,3 +327,20 @@
       background-color: #7a4ea0; /* Darker lavender on hover */
     }
 
+  body {
+    background-color: #f2f1ef;
+    background-size: cover;
+    background-position: center center;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+
+  .landing-header {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 100px; /* Adjust as needed */
+    color: #3498db;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
